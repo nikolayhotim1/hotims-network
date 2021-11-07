@@ -1,3 +1,56 @@
-ul li {
-    list-style-type: georgian;
+.app-wrapper {
+    display: grid;
+    grid-template-areas:
+        "h h"
+        "n c";
+    grid-template-rows: 60px 1fr;
+    grid-template-columns: 2fr 10fr;
+    grid-gap: 10px;
+    width: 1600px;
+    margin: 0 auto;
+}
+
+.header {
+    grid-area: h;
+    background-color: green;
+}
+
+.nav {
+    grid-area: n;
+    background-color: burlywood;
+}
+
+.content {
+    grid-area: c;
+    background-color: cornflowerblue;
+}
+
+.header,
+.nav,
+.content div.descriptions,
+.content div.my-posts {
+    padding-left: 10px;
+}
+
+.header img {
+    height: 100%;
+}
+
+.content div.avatar-with-descriptions {
+    display: flex;
+    flex-direction: row;
+}
+
+.content div.descriptions {
+    display: flex;
+    flex-direction: column;
+}
+
+.content div.background-image img {
+    width: 100%;
+    height: 100px;
+}
+
+.content div.avatar-with-descriptions img {
+    height: 100%;
 }
