@@ -15,20 +15,20 @@
     background-color: green;
 }
 
-.nav {
+.navbar {
     grid-area: n;
     background-color: burlywood;
 }
 
-.content {
+.profile {
     grid-area: c;
     background-color: cornflowerblue;
 }
 
 .header,
-.nav,
-.content div.descriptions,
-.content div.my-posts {
+.navbar,
+.profile div.descriptions,
+.profile div.my-posts {
     padding-left: 10px;
 }
 
@@ -36,21 +36,21 @@
     height: 100%;
 }
 
-.content div.avatar-with-descriptions {
+.profile div.avatar-with-descriptions {
     display: flex;
     flex-direction: row;
 }
 
-.content div.descriptions {
+.profile div.descriptions {
     display: flex;
     flex-direction: column;
 }
 
-.content div.background-image img {
+.profile div.background-image img {
     width: 100%;
     height: 100px;
 }
 
-.content div.avatar-with-descriptions img {
+.profile div.avatar-with-descriptions img {
     height: 100%;
 }
