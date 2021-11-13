@@ -1,19 +1,21 @@
 import React from 'react';
 import style from './Post.module.css';
 
-const Post = () => {
+const Post = (props) => {
+    debugger;
+
     return (
         <div className={style.item}>
+            <div>
+                {props.message}
+            </div>
+            
             <img src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png"
                 alt="Cat" />
 
             <span>
-                Post 1
+                Likes: {props.likesCount}
             </span>
-
-            <div>
-                Like
-            </div>
         </div>
     )
 }
