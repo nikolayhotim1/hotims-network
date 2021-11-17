@@ -4,6 +4,6 @@
 }
 
 .header img {
-    height: 100%;
-    padding-left: 10px;
+    height: calc(100% - 20px);
+    padding: 10px;
 }
