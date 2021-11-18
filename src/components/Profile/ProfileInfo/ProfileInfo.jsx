@@ -4,7 +4,7 @@ import style from './ProfileInfo.module.css';
 const ProfileInfo = () => {
     return (
         <div>
-            <div className={style.background_image}>
+            <div className={style.main_image}>
                 <img src='https://wallpaperaccess.com/full/2130425.jpg'
                     alt='Savanna' />
             </div>
