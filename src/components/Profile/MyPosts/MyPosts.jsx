@@ -8,8 +8,13 @@ const MyPosts = () => {
             <h2>My posts</h2>
 
             <div className={style.new_post}>
-                <textarea placeholder='New post'></textarea>
-                <button>Add post</button>
+                <div>
+                    <textarea placeholder='New post'></textarea>
+                </div>
+
+                <div>
+                    <button>Add post</button>
+                </div>
             </div>
 
             <div className={style.posts}>

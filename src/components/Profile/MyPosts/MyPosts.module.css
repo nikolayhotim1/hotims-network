@@ -1,3 +1,7 @@
 .my_posts {
-    padding-left: 10px;
+    padding: 10px;
+}
+
+.posts {
+    margin-top: 10px;
 }
