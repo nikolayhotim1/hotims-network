@@ -3,7 +3,7 @@ import style from './News.module.css';
 
 const News = (props) => {
     return (
-        <div>
+        <div className={style.news_wrapper}>
             News
         </div>
     )
