@@ -23,3 +23,7 @@
 .message {
     border: 1px dashed lightpink;
 }
+
+.new_message {
+    margin-top: 10px;
+}
