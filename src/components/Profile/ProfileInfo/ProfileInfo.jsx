@@ -1,7 +1,12 @@
 import React from 'react';
+import Preloader from '../../common/Preloader/Preloader';
 import style from './ProfileInfo.module.css';
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+    if (!props.profile) {
+        return <Preloader />
+    }
+
     return (
         <div>
             <div className={style.main_image}>
@@ -10,7 +15,7 @@ const ProfileInfo = () => {
             </div>
 
             <div className={style.avatar_with_descriptions}>
-                <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTabBDvUo74Unf7YNUQJHivkHeRvymbm2CcWQ&usqp=CAU'
+                <img src={props.profile.photos.large}
                     alt='Zebra' />
 
                 <div className={style.descriptions}>
