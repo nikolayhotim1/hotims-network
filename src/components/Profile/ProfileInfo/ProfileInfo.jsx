@@ -19,10 +19,11 @@ const ProfileInfo = (props) => {
                     alt='Zebra' />
 
                 <div className={style.descriptions}>
-                    <h1>Nikolay Hotim</h1>
+                    <h1>{props.profile.fullName}</h1>
                     <p>Date of birth: 23.12.1992</p>
                     <p>City of residence: Grodno, Belarus</p>
-                    <p>Front-end developer (HTML5, CSS3, JavaScript, React)</p>
+                    <p>About me: {props.profile.aboutMe}</p>
+                    <p>Looking for a job: {props.profile.lookingForAJob ? props.profile.lookingForAJobDescription : 'not looking for'}</p>
                 </div>
             </div>
         </div>
