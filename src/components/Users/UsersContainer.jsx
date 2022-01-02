@@ -1,8 +1,8 @@
 import * as axios from 'axios';
 import React from 'react';
 import Users from './Users';
-import { connect } from "react-redux";
-import { follow, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, unfollow } from "../../redux/usersReduser";
+import { connect } from 'react-redux';
+import { follow, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, unfollow } from '../../redux/usersReduser';
 import Preloader from '../common/Preloader/Preloader';
 
 class UsersContainer extends React.Component {
@@ -28,7 +28,7 @@ class UsersContainer extends React.Component {
                 this.props.toggleIsFetching(false);
                 this.props.setUsers(response.data.items);
             });
-    }
+    };
 
     render() {
         return <>
@@ -46,7 +46,7 @@ class UsersContainer extends React.Component {
     }
 }
 
-let mapStateToProps = (state) => ({
+const mapStateToProps = (state) => ({
     users: state.usersPage.users,
     pageSize: state.usersPage.pageSize,
     totalUsersCount: state.usersPage.totalUsersCount,
