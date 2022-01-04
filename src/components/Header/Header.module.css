@@ -7,3 +7,7 @@
     height: calc(100% - 20px);
     padding: 10px;
 }
+
+.login_block {
+    float: right;
+}
