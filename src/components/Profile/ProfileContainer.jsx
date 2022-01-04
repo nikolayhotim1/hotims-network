@@ -7,7 +7,7 @@ import Profile from './Profile';
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
-        let userId = this.props.match ? this.props.match.params.userId : 2;
+        let userId = this.props.match ? this.props.match.params.userId : 21659;
 
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
             .then(response => {

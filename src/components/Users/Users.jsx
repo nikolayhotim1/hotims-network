@@ -46,12 +46,12 @@ let Users = (props) => {
                             {u.followed
                                 ? <button onClick={() => {
                                     axios.delete(
-                                        `https://social-network.samuraijs.com/api/1.0/unfollow/${u.id}`,
+                                        `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
                                         {
                                             withCredentials: true,
-                                            // headers: {
-                                            //     'API-KEY': 'b1775b2f-c3a5-4509-8dc9-90b5629de7c3'
-                                            // }
+                                            headers: {
+                                                'API-KEY': '7d7c0cc8-9365-47ef-8d77-ea42e5daa598'
+                                            }
                                         }
                                     ).then(response => {
                                         if (response.data.resultCode === 0) {
@@ -66,9 +66,9 @@ let Users = (props) => {
                                         {},
                                         {
                                             withCredentials: true,
-                                            // headers: {
-                                            //     'API-KEY': 'b1775b2f-c3a5-4509-8dc9-90b5629de7c3'
-                                            // }
+                                            headers: {
+                                                'API-KEY': '7d7c0cc8-9365-47ef-8d77-ea42e5daa598'
+                                            }
                                         }
                                     ).then(response => {
                                         if (response.data.resultCode === 0) {
