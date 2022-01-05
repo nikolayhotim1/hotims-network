@@ -1,8 +1,8 @@
-import * as axios from 'axios';
 import React from 'react';
 import style from './Users.module.css';
 import userPhoto from './../../assets/images/userPhoto.png';
 import { NavLink } from 'react-router-dom';
+import { followUnfollowAPI } from '../../api/api';
 
 let Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -45,33 +45,20 @@ let Users = (props) => {
                         <div>
                             {u.followed
                                 ? <button onClick={() => {
-                                    axios.delete(
-                                        `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
-                                        {
-                                            withCredentials: true,
-                                            headers: {
-                                                'API-KEY': '7d7c0cc8-9365-47ef-8d77-ea42e5daa598'
-                                            }
-                                        }
-                                    ).then(response => {
-                                        if (response.data.resultCode === 0) {
+                                    followUnfollowAPI.getNewUnfollowedUser(
+                                        u.id
+                                    ).then(data => {
+                                        if (data.resultCode === 0) {
                                             props.unfollow(u.id);
                                         }
                                     });
                                 }}>Unfollow</button>
 
                                 : <button onClick={() => {
-                                    axios.post(
-                                        `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
-                                        {},
-                                        {
-                                            withCredentials: true,
-                                            headers: {
-                                                'API-KEY': '7d7c0cc8-9365-47ef-8d77-ea42e5daa598'
-                                            }
-                                        }
-                                    ).then(response => {
-                                        if (response.data.resultCode === 0) {
+                                    followUnfollowAPI.getNewFollowedUser(
+                                        u.id
+                                    ).then(data => {
+                                        if (data.resultCode === 0) {
                                             props.follow(u.id);
                                         }
                                     });

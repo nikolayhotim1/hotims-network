@@ -16,29 +16,24 @@ export const usersAPI = {
         ).then(response => {
             return response.data;
         })
+    }
+};
+
+export const followUnfollowAPI = {
+    getNewFollowedUser(id = 2) {
+        return instance.post(
+            `follow/${id}`,
+            {}
+        ).then(response => {
+            return response.data;
+        });
     },
 
-    getNewFollowedUser(id = 2) {
-        return instance.get(
+    getNewUnfollowedUser(id = 2) {
+        return instance.delete(
             `follow/${id}`,
         ).then(response => {
             return response.data;
         });
     }
 };
-
-// export const getUsers = (currentPage = 1, pageSize = 10) => {
-//     return instance.get(
-//         `users?page=${currentPage}&count=${pageSize}`,
-//     ).then(response => {
-//         return response.data;
-//     });
-// };
-
-// export const getNewFollowedUser = (id = 2) => {
-//     return instance.get(
-//         `follow/${id}`,
-//     ).then(response => {
-//         return response.data;
-//     });
-// };
