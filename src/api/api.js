@@ -19,6 +19,26 @@ export const usersAPI = {
     }
 };
 
+export const userProfileAPI = {
+    getUserProfile(id = 2) {
+        return instance.get(
+            `profile/${id}`,
+        ).then(response => {
+            return response.data;
+        })
+    }
+};
+
+export const authAPI = {
+    getAuthUserData() {
+        return instance.get(
+            `auth/me`,
+        ).then(response => {
+            return response.data;
+        })
+    }
+};
+
 export const followUnfollowAPI = {
     getNewFollowedUser(id = 2) {
         return instance.post(

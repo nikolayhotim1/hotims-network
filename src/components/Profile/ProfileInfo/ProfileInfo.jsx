@@ -1,5 +1,6 @@
 import React from 'react';
 import Preloader from '../../common/Preloader/Preloader';
+import userPhoto from '../../../assets/images/userPhoto.png';
 import style from './ProfileInfo.module.css';
 
 const ProfileInfo = (props) => {
@@ -18,7 +19,7 @@ const ProfileInfo = (props) => {
 
             <div className={style.avatar_with_descriptions}>
                 <img
-                    src={props.profile.photos.large}
+                    src={props.profile.photos.large || userPhoto}
                     alt='Zebra'
                 />
 
