@@ -10,22 +10,37 @@ const instance = axios.create({
 });
 
 export const usersAPI = {
-    getUsers(currentPage = 1, pageSize = 10) {
+    getUsers(currentPage, pageSize) {
         return instance.get(
             `users?page=${currentPage}&count=${pageSize}`,
         ).then(response => {
             return response.data;
-        })
-    }
-};
+        });
+    },
 
-export const userProfileAPI = {
-    getUserProfile(id = 2) {
+    getUserProfile(userId) {
         return instance.get(
-            `profile/${id}`,
+            `profile/${userId}`,
         ).then(response => {
             return response.data;
-        })
+        });
+    },
+
+    getNewFollowedUser(userId) {
+        return instance.post(
+            `follow/${userId}`,
+            {}
+        ).then(response => {
+            return response.data;
+        });
+    },
+
+    getNewUnfollowedUser(userId) {
+        return instance.delete(
+            `follow/${userId}`,
+        ).then(response => {
+            return response.data;
+        });
     }
 };
 
@@ -35,25 +50,35 @@ export const authAPI = {
             `auth/me`,
         ).then(response => {
             return response.data;
-        })
-    }
-};
-
-export const followUnfollowAPI = {
-    getNewFollowedUser(id = 2) {
-        return instance.post(
-            `follow/${id}`,
-            {}
-        ).then(response => {
-            return response.data;
-        });
-    },
-
-    getNewUnfollowedUser(id = 2) {
-        return instance.delete(
-            `follow/${id}`,
-        ).then(response => {
-            return response.data;
         });
     }
 };
+
+// export const userProfileAPI = {
+//     getUserProfile(userId = 2) {
+//         return instance.get(
+//             `profile/${userId}`,
+//         ).then(response => {
+//             return response.data;
+//         })
+//     }
+// };
+
+// export const followUnfollowAPI = {
+//     getNewFollowedUser(userId = 2) {
+//         return instance.post(
+//             `follow/${userId}`,
+//             {}
+//         ).then(response => {
+//             return response.data;
+//         });
+//     },
+
+//     getNewUnfollowedUser(userId = 2) {
+//         return instance.delete(
+//             `follow/${userId}`,
+//         ).then(response => {
+//             return response.data;
+//         });
+//     }
+// };
