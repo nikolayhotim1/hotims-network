@@ -4,8 +4,9 @@ import Dialogs from './Dialogs';
 
 let mapStateToProps = (state) => {
     return {
-        dialogsPage: state.dialogsPage
-    }
+        dialogsPage: state.dialogsPage,
+        isAuth: state.auth.isAuth
+    };
 };
 
 let mapDispatchToProps = (dispatch) => {
@@ -17,7 +18,7 @@ let mapDispatchToProps = (dispatch) => {
         updateNewMessageText: (text) => {
             dispatch(updateNewMessageTextActionCreator(text));
         }
-    }
+    };
 };
 
 const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
