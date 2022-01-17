@@ -2,6 +2,7 @@ import React from 'react';
 import Preloader from '../../common/Preloader/Preloader';
 import userPhoto from '../../../assets/images/userPhoto.png';
 import style from './ProfileInfo.module.css';
+import ProfileStatus from './ProfileStatus';
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -25,6 +26,7 @@ const ProfileInfo = (props) => {
 
                 <div className={style.descriptions}>
                     <h1>{props.profile.fullName}</h1>
+                    <ProfileStatus status={'Hello my friends!'} />
                     <p>Date of birth: 23.12.1992</p>
                     <p>City of residence: Grodno, Belarus</p>
                     <p>About me: {props.profile.aboutMe}</p>
