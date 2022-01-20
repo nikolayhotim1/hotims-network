@@ -26,7 +26,12 @@ const ProfileInfo = (props) => {
 
                 <div className={style.descriptions}>
                     <h1>{props.profile.fullName}</h1>
-                    <ProfileStatus status={'Hello my friends!'} />
+
+                    <ProfileStatus
+                        status={props.status}
+                        getUpdateStatus={props.getUpdateStatus}
+                    />
+
                     <p>Date of birth: 23.12.1992</p>
                     <p>City of residence: Grodno, Belarus</p>
                     <p>About me: {props.profile.aboutMe}</p>

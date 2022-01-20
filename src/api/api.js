@@ -12,15 +12,7 @@ const instance = axios.create({
 export const usersAPI = {
     getUsers(currentPage, pageSize) {
         return instance.get(
-            `users?page=${currentPage}&count=${pageSize}`,
-        ).then(response => {
-            return response.data;
-        });
-    },
-
-    getUserProfile(userId) {
-        return instance.get(
-            `profile/${userId}`,
+            `users?page=${currentPage}&count=${pageSize}`
         ).then(response => {
             return response.data;
         });
@@ -37,7 +29,7 @@ export const usersAPI = {
 
     getNewUnfollowedUser(userId) {
         return instance.delete(
-            `follow/${userId}`,
+            `follow/${userId}`
         ).then(response => {
             return response.data;
         });
@@ -47,22 +39,39 @@ export const usersAPI = {
 export const authAPI = {
     getAuthUserData() {
         return instance.get(
-            `auth/me`,
+            `auth/me`
         ).then(response => {
             return response.data;
         });
     }
 };
 
-// export const userProfileAPI = {
-//     getUserProfile(userId = 2) {
-//         return instance.get(
-//             `profile/${userId}`,
-//         ).then(response => {
-//             return response.data;
-//         })
-//     }
-// };
+export const profileAPI = {
+    getUserProfile(userId) {
+        return instance.get(
+            `profile/${userId}`
+        ).then(response => {
+            return response.data;
+        });
+    },
+
+    getUserStatus(userId) {
+        return instance.get(
+            `profile/status/${userId}`
+        ).then(response => {
+            return response.data;
+        });
+    },
+
+    getUpdateStatus(status) {
+        return instance.put(
+            `profile/status`,
+            { status: status }
+        ).then(response => {
+            return response.data;
+        });
+    }
+};
 
 // export const followUnfollowAPI = {
 //     getNewFollowedUser(userId = 2) {
