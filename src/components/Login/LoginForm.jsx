@@ -9,8 +9,8 @@ const LoginForm = (props) => {
             <div>
                 <Field
                     component={Input}
-                    name='login'
-                    placeholder='Login'
+                    name='email'
+                    placeholder='Email'
                     validate={[required]}
                 />
             </div>

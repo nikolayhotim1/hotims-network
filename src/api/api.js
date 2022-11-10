@@ -43,6 +43,23 @@ export const authAPI = {
         ).then(response => {
             return response.data;
         });
+    },
+
+    login(email, password, rememberMe = false) {
+        return instance.post(
+            `auth/login`,
+            { email, password, rememberMe }
+        ).then(response => {
+            return response.data;
+        });
+    },
+
+    logout() {
+        return instance.delete(
+            `auth/login`
+        ).then(response => {
+            return response.data;
+        });
     }
 };
 
@@ -72,22 +89,3 @@ export const profileAPI = {
         });
     }
 };
-
-// export const followUnfollowAPI = {
-//     getNewFollowedUser(userId = 2) {
-//         return instance.post(
-//             `follow/${userId}`,
-//             {}
-//         ).then(response => {
-//             return response.data;
-//         });
-//     },
-
-//     getNewUnfollowedUser(userId = 2) {
-//         return instance.delete(
-//             `follow/${userId}`,
-//         ).then(response => {
-//             return response.data;
-//         });
-//     }
-// };
