@@ -9,7 +9,7 @@ const Header = (props) => {
                 alt='Juventus logo' />
 
             <div className={style.login_block}>{props.isAuth
-                ? props.login
+                ? <div>{props.login} <button onClick={props.logout}>Logout</button></div>
                 : <NavLink to={'/login'}>Login</NavLink>
             }</div>
         </header>
