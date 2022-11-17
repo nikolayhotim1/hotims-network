@@ -2,15 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { useMatch } from 'react-router-dom';
 import { compose } from 'redux';
-// import { withAuthRedirectComponent } from '../../hoc/withAuthRedirect';
+import { withAuthRedirectComponent } from '../../hoc/withAuthRedirect';
 import { getUserProfile, getUserStatus, getUpdateStatus } from '../../redux/profileReduser';
 import Profile from './Profile';
 
-const myId = 21659;
-
 class ProfileContainer extends React.Component {
     componentDidMount() {
-        let userId = this.props.match ? this.props.match.params.userId : myId;
+        let userId = this.props.match ? this.props.match.params.userId : this.props.authorizedUserId;
         this.props.getUserProfile(userId);
         this.props.getUserStatus(userId);
     }
@@ -27,17 +25,19 @@ class ProfileContainer extends React.Component {
     }
 }
 
-// const AuthRedirectComponent = withAuthRedirectComponent(ProfileContainer);
+const AuthRedirectComponent = withAuthRedirectComponent(ProfileContainer);
 
 const mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
-    status: state.profilePage.status
+    status: state.profilePage.status,
+    authorizedUserId: state.auth.userId,
+    isAuth: state.auth.isAuth
 });
 
 const ProfileUrlMatch = (props) => {
     const match = useMatch('profile/:userId');
-    // return <AuthRedirectComponent {...props} match={match} />;
-    return <ProfileContainer {...props} match={match} />;
+    return <AuthRedirectComponent {...props} match={match} />;
+    // return <ProfileContainer {...props} match={match} />;
 };
 
 export default compose(
