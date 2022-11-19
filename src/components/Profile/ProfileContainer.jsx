@@ -30,16 +30,16 @@ const AuthRedirectComponent = withAuthRedirectComponent(ProfileContainer);
 const mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
-    authorizedUserId: state.auth.userId,
+    authorizedUserId: state.auth.id,
     isAuth: state.auth.isAuth
 });
 
 const ProfileUrlMatch = (props) => {
     const match = useMatch('profile/:userId');
     return <AuthRedirectComponent {...props} match={match} />;
-    // return <ProfileContainer {...props} match={match} />;
 };
 
-export default compose(
-    connect(mapStateToProps, { getUserProfile, getUserStatus, getUpdateStatus })
-)(ProfileUrlMatch);
+export default compose(connect(
+    mapStateToProps,
+    { getUserProfile, getUserStatus, getUpdateStatus }
+))(ProfileUrlMatch);
