@@ -4,9 +4,9 @@ import userPhoto from '../../../assets/images/userPhoto.png';
 import style from './ProfileInfo.module.css';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
-const ProfileInfo = (props) => {
-    if (!props.profile) {
-        return <Preloader />
+const ProfileInfo = ({ profile, status, getUpdateStatus }) => {
+    if (!profile) {
+        return <Preloader />;
     }
 
     return (
@@ -20,30 +20,30 @@ const ProfileInfo = (props) => {
 
             <div className={style.avatar_with_descriptions}>
                 <img
-                    src={props.profile.photos.large || userPhoto}
+                    src={profile.photos.large || userPhoto}
                     alt='Zebra'
                 />
 
                 <div className={style.descriptions}>
-                    <h1>{props.profile.fullName}</h1>
+                    <h1>{profile.fullName}</h1>
 
                     <ProfileStatusWithHooks
-                        status={props.status}
-                        getUpdateStatus={props.getUpdateStatus}
+                        status={status}
+                        getUpdateStatus={getUpdateStatus}
                     />
 
                     <p>Date of birth: 23.12.1992</p>
                     <p>City of residence: Grodno, Belarus</p>
-                    <p>About me: {props.profile.aboutMe}</p>
+                    <p>About me: {profile.aboutMe}</p>
 
-                    <p>Looking for a job: {props.profile.lookingForAJob
-                        ? props.profile.lookingForAJobDescription
+                    <p>Looking for a job: {profile.lookingForAJob
+                        ? profile.lookingForAJobDescription
                         : 'not looking for'}
                     </p>
                 </div>
             </div>
         </div>
-    )
+    );
 };
 
 export default ProfileInfo;

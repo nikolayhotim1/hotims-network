@@ -1,6 +1,6 @@
-import dialogsReduser from "./dialogsReduser";
-import profileReduser from "./profileReduser";
-import sidebarReduser from "./sidebarReduser";
+import dialogsReduser from './dialogsReduser';
+import profileReduser from './profileReduser';
+import sidebarReduser from './sidebarReduser';
 
 let store = {
     _state: {
@@ -93,5 +93,6 @@ let store = {
     }
 };
 
+window.store = store;
+
 export default store;
-// window.store = store;

@@ -1,12 +1,13 @@
 import { usersAPI } from '../api/api';
+import { updateObjectInArray } from '../utils/helpers/objectHelper';
 
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = 'SET_USERS';
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
-const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
-const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
+const FOLLOW = 'usersReduser/FOLLOW';
+const UNFOLLOW = 'usersReduser/UNFOLLOW';
+const SET_USERS = 'usersReduser/SET_USERS';
+const SET_CURRENT_PAGE = 'usersReduser/SET_CURRENT_PAGE';
+const SET_TOTAL_USERS_COUNT = 'usersReduser/SET_TOTAL_USERS_COUNT';
+const TOGGLE_IS_FETCHING = 'usersReduser/TOGGLE_IS_FETCHING';
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'usersReduser/TOGGLE_IS_FOLLOWING_PROGRESS';
 
 let initialState = {
     users: [],
@@ -22,28 +23,14 @@ const usersReduser = (state = initialState, action) => {
         case FOLLOW: {
             return {
                 ...state,
-
-                users: state.users.map(u => {
-                    if (u.id === action.userId) {
-                        return { ...u, followed: true }
-                    }
-
-                    return u;
-                })
+                users: updateObjectInArray(state.users, action.userId, 'id', { followed: true })
             };
         }
 
         case UNFOLLOW: {
             return {
                 ...state,
-
-                users: state.users.map(u => {
-                    if (u.id === action.userId) {
-                        return { ...u, followed: false }
-                    }
-
-                    return u;
-                })
+                users: updateObjectInArray(state.users, action.userId, 'id', { followed: false })
             };
         }
 
@@ -86,46 +73,40 @@ export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching });
 export const toggleIsFollowingProgress = (isFetching, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId });
 
+const followUnfollowFlow = async (dispatch, userId, apiMethod, actionCreator) => {
+    dispatch(toggleIsFollowingProgress(true, userId));
+
+    let data = await apiMethod(userId);
+
+    if (data.resultCode === 0) {
+        dispatch(actionCreator(userId));
+    }
+
+    dispatch(toggleIsFollowingProgress(false, userId));
+}
+
 export const requestUsers = (page, pageSize) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(toggleIsFetching(true));
         dispatch(setCurrentPage(page));
 
-        usersAPI.getUsers(page, pageSize).then(data => {
-            dispatch(toggleIsFetching(false));
-            dispatch(setUsers(data.items));
-            dispatch(setTotalUsersCount(data.totalCount));
-        });
+        let data = await usersAPI.getUsers(page, pageSize);
+
+        dispatch(toggleIsFetching(false));
+        dispatch(setUsers(data.items));
+        dispatch(setTotalUsersCount(data.totalCount));
     };
 };
 
 export const follow = (userId) => {
-    return (dispatch) => {
-        dispatch(toggleIsFollowingProgress(true, userId));
-        usersAPI.getNewFollowedUser(
-            userId
-        ).then(data => {
-            if (data.resultCode === 0) {
-                dispatch(followSuccess(userId));
-            }
-
-            dispatch(toggleIsFollowingProgress(false, userId));
-        });
+    return async (dispatch) => {
+        followUnfollowFlow(dispatch, userId, usersAPI.getNewFollowedUser.bind(userId), followSuccess);
     };
 };
 
 export const unfollow = (userId) => {
-    return (dispatch) => {
-        dispatch(toggleIsFollowingProgress(true, userId));
-        usersAPI.getNewUnfollowedUser(
-            userId
-        ).then(data => {
-            if (data.resultCode === 0) {
-                dispatch(unfollowSuccess(userId));
-            }
-
-            dispatch(toggleIsFollowingProgress(false, userId));
-        });
+    return async (dispatch) => {
+        followUnfollowFlow(dispatch, userId, usersAPI.getNewUnfollowedUser.bind(userId), unfollowSuccess);
     };
 };
 

@@ -1,4 +1,4 @@
-const SEND_MESSAGE = 'SEND-MESSAGE';
+const SEND_MESSAGE = 'dialogsReduser/SEND-MESSAGE';
 
 let initialState = {
     dialogs: [
@@ -15,7 +15,7 @@ let initialState = {
         { id: 3, message: 'Yo!' },
         { id: 4, message: 'Yo!' },
         { id: 5, message: 'Yo!' }
-    ],
+    ]
 };
 
 const dialogsReduser = (state = initialState, action) => {
@@ -41,6 +41,8 @@ const dialogsReduser = (state = initialState, action) => {
     }
 };
 
-export const sendMessageActionCreator = (newMessageText) => ({ type: SEND_MESSAGE, newMessageText });
+export const sendMessageActionCreator = (newMessageText) => (
+    { type: SEND_MESSAGE, newMessageText }
+);
 
 export default dialogsReduser;
