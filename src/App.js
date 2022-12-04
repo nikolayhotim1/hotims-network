@@ -13,6 +13,9 @@ import Login from './components/Login/Login';
 import { connect } from 'react-redux';
 import { initializeApp } from './redux/appReduser';
 import Preloader from './components/common/Preloader/Preloader';
+import store from './redux/reduxStore';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 class App extends Component {
     componentDidMount() {
@@ -67,5 +70,18 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => ({ initialized: state.app.initialized });
+const AppContainer = connect(mapStateToProps, { initializeApp })(App);
 
-export default connect(mapStateToProps, { initializeApp })(App);
+const MainApp = (props) => {
+    return (
+        <React.StrictMode>
+            <BrowserRouter>
+                <Provider store={store}>
+                    <AppContainer />
+                </Provider>
+            </BrowserRouter>
+        </React.StrictMode>
+    );
+};
+
+export default MainApp;
