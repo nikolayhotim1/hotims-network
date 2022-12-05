@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import { Route, Routes } from 'react-router';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
@@ -12,7 +12,6 @@ import Preloader from './components/common/Preloader/Preloader';
 import store from './redux/reduxStore';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { withSuspense } from './hoc/withSuspense';
 
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
@@ -35,36 +34,38 @@ class App extends Component {
                 <Navbar />
 
                 <div className='app-wrapper-content'>
-                    <Routes>
-                        <Route
-                            path='/profile'
-                            element={withSuspense(ProfileContainer)}
-                        >
+                    <Suspense fallback={<Preloader />}>
+                        <Routes>
                             <Route
-                                path='/profile/:userId'
-                                element={withSuspense(ProfileContainer)}
+                                path='/profile'
+                                element={<ProfileContainer />}
+                            >
+                                <Route
+                                    path='/profile/:userId'
+                                    element={<ProfileContainer />}
+                                />
+                            </Route>
+
+                            <Route
+                                path='/dialogs'
+                                element={<DialogsContainer />}
                             />
-                        </Route>
 
-                        <Route
-                            path='/dialogs'
-                            element={withSuspense(DialogsContainer)}
-                        />
+                            <Route
+                                path='/users'
+                                element={<UsersConatainer />}
+                            />
 
-                        <Route
-                            path='/users'
-                            element={withSuspense(UsersConatainer)}
-                        />
+                            <Route
+                                path='/login'
+                                element={<Login />}
+                            />
 
-                        <Route
-                            path='/login'
-                            element={withSuspense(Login)}
-                        />
-
-                        <Route path='/news' element={<News />} />
-                        <Route path='/music' element={<Music />} />
-                        <Route path='/settings' element={<Settings />} />
-                    </Routes>
+                            <Route path='/news' element={<News />} />
+                            <Route path='/music' element={<Music />} />
+                            <Route path='/settings' element={<Settings />} />
+                        </Routes>
+                    </Suspense>
                 </div>
             </div>
         );
