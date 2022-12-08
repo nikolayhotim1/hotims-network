@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { initializeApp } from './redux/appReduser';
 import Preloader from './components/common/Preloader/Preloader';
 import store from './redux/reduxStore';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
@@ -78,11 +78,11 @@ const AppContainer = connect(mapStateToProps, { initializeApp })(App);
 const MainApp = (props) => {
     return (
         <React.StrictMode>
-            <BrowserRouter basename={process.env.PUBLIC_URL}>
+            <HashRouter>
                 <Provider store={store}>
                     <AppContainer />
                 </Provider>
-            </BrowserRouter>
+            </HashRouter>
         </React.StrictMode>
     );
 };
