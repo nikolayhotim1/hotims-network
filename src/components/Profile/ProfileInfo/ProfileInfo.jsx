@@ -1,13 +1,15 @@
 import React from 'react';
 import Preloader from '../../common/Preloader/Preloader';
-import userPhoto from '../../../assets/images/userPhoto.png';
+import userPhoto from '../../../assets/images/computer-user-icon.png';
 import style from './ProfileInfo.module.css';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
-const ProfileInfo = ({ profile, status, getUpdateStatus }) => {
-    if (!profile) {
-        return <Preloader />;
-    }
+const ProfileInfo = ({ isOwner, profile, status, getUpdateStatus, savePhoto }) => {
+    if (!profile) return <Preloader />;
+
+    const onMainPhotoSelected = (e) => {
+        if (e.target.files.length) savePhoto(e.target.files[0]);
+    };
 
     return (
         <div>
@@ -41,6 +43,10 @@ const ProfileInfo = ({ profile, status, getUpdateStatus }) => {
                         : 'not looking for'}
                     </p>
                 </div>
+            </div>
+
+            <div>
+                {isOwner && <input type='file' onChange={onMainPhotoSelected} />}
             </div>
         </div>
     );

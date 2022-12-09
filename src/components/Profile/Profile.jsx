@@ -7,13 +7,15 @@ const Profile = (props) => {
     return (
         <div className={style.profile_wrapper}>
             <ProfileInfo
+                isOwner={props.isOwner}
                 profile={props.profile}
                 status={props.status}
                 getUpdateStatus={props.getUpdateStatus}
+                savePhoto={props.savePhoto}
             />
             <MyPostsContainer />
         </div>
-    )
+    );
 };
 
 export default Profile;
