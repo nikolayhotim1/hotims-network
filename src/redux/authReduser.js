@@ -1,18 +1,21 @@
 import { stopSubmit } from 'redux-form';
-import { authAPI } from '../api/api';
+import { authAPI, securityAPI } from '../api/api';
 
 const SET_USER_DATA = 'authReduser/SET_USER_DATA';
+const GET_CAPTCHA_URL_SUCCESS = 'authReduser/GET_CAPTCHA_URL_SUCCESS';
 
 let initialState = {
     id: null,
     email: null,
     login: null,
     isAuth: false,
-    isFetching: false
+    isFetching: false,
+    captchaURL: null
 };
 
 const authReduser = (state = initialState, action) => {
     switch (action.type) {
+        case GET_CAPTCHA_URL_SUCCESS:
         case SET_USER_DATA: {
             return {
                 ...state,
@@ -29,6 +32,10 @@ export const setAuthUserData = (id, email, login, isAuth) => (
     { type: SET_USER_DATA, payload: { id, email, login, isAuth } }
 );
 
+export const getCaptchaURLSuccess = (captchaURL) => (
+    { type: GET_CAPTCHA_URL_SUCCESS, payload: { captchaURL } }
+);
+
 export const getAuthUserData = () => {
     return async (dispatch) => {
         let data = await authAPI.getAuthUserData();
@@ -40,16 +47,28 @@ export const getAuthUserData = () => {
     };
 };
 
-export const login = (email, password, rememberMe) => {
+export const login = (email, password, rememberMe, captcha) => {
     return async (dispatch) => {
-        let data = await authAPI.login(email, password, rememberMe);
+        let data = await authAPI.login(email, password, rememberMe, captcha);
 
         if (data.resultCode === 0) {
             dispatch(getAuthUserData());
         } else {
+            if (data.resultCode === 10) {
+                dispatch(getCaptchaURL());
+            }
+
             let message = data.messages.length > 0 ? data.messages[0] : 'Some error';
             dispatch(stopSubmit('login', { _error: message }));
         }
+    };
+};
+
+export const getCaptchaURL = () => {
+    return async (dispatch) => {
+        let data = await securityAPI.getCaptchaURL();
+        const captchaURL = data.url;
+        dispatch(getCaptchaURLSuccess(captchaURL));
     };
 };
 
