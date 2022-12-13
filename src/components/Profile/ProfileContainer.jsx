@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { useMatch } from 'react-router-dom';
-import { compose } from 'redux';
 import { withAuthRedirectComponent } from '../../hoc/withAuthRedirect';
 import { getUserProfile, getUserStatus, getUpdateStatus, savePhoto, saveProfile } from '../../redux/profileReduser';
 import Profile from './Profile';
@@ -51,7 +50,7 @@ const ProfileUrlMatch = (props) => {
     return <AuthRedirectComponent {...props} match={match} />;
 };
 
-export default compose(connect(
+export default connect(
     mapStateToProps,
     { getUserProfile, getUserStatus, getUpdateStatus, savePhoto, saveProfile }
-))(ProfileUrlMatch);
+)(ProfileUrlMatch);

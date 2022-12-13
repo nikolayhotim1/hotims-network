@@ -3,7 +3,8 @@ import { getAuthUserData } from './authReduser';
 const INITIALIZED_SUCCESS = 'appReduser/INITIALIZED_SUCCESS';
 
 let initialState = {
-    initialized: false
+    initialized: false,
+    globalError: null
 };
 
 const appReduser = (state = initialState, action) => {

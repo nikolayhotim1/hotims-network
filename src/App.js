@@ -1,5 +1,5 @@
 import React, { Component, Suspense } from 'react';
-import { Route, Routes } from 'react-router';
+import { Route, Routes, Navigate } from 'react-router';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import News from './components/News/News';
@@ -19,8 +19,17 @@ const UsersConatainer = React.lazy(() => import('./components/Users/UsersContain
 const Login = React.lazy(() => import('./components/Login/Login'));
 
 class App extends Component {
+    catchAllUnhandledErrors = (reason, promise) => {
+        console.log(`Some error occured: ${reason}, ${promise}`);
+    };
+
     componentDidMount() {
         this.props.initializeApp();
+        window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors);
     }
 
     render() {
@@ -64,6 +73,8 @@ class App extends Component {
                             <Route path='/news' element={<News />} />
                             <Route path='/music' element={<Music />} />
                             <Route path='/settings' element={<Settings />} />
+                            <Route path='/' element={<Navigate to='/profile' />} />
+                            <Route path='/*' element={<div>404 NOT FOUND</div>} />
                         </Routes>
                     </Suspense>
                 </div>

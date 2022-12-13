@@ -67,7 +67,7 @@ const ProfileData = ({ profile, status, getUpdateStatus, isOwner, activateEditMo
         <div className={style.info}>
             <div>
                 <h1>{profile.fullName}</h1>
-                <ProfileStatusWithHooks status={status} getUpdateStatus={getUpdateStatus} />
+                <ProfileStatusWithHooks isOwner={isOwner} status={status} getUpdateStatus={getUpdateStatus} />
                 <p><b>About me:</b> {profile.aboutMe}</p>
                 <p><b>Looking for a job:</b> {profile.lookingForAJob ? 'Yes' : 'No'}</p>
                 {profile.lookingForAJob && <p><b>My skills:</b> {profile.lookingForAJobDescription}</p>}
