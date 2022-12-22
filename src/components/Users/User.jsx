@@ -3,7 +3,7 @@ import style from './Users.module.css';
 import userPhoto from '../../assets/images/computer-user-icon.png';
 import { NavLink } from 'react-router-dom';
 
-let User = ({ user, followingInProgress, follow, unfollow }) => {
+const User = ({ user, followingInProgress, follow, unfollow }) => {
     return (
         <div className={style.user}>
             <span>
@@ -15,28 +15,23 @@ let User = ({ user, followingInProgress, follow, unfollow }) => {
                             className={style.userPhoto}
                         />
                     </NavLink>
-
                 </div>
-
                 <div>
-                    {user.followed
-                        ? <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
-                            unfollow(user.id);
-                        }}>Unfollow</button>
-
-                        : <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
-                            follow(user.id);
-                        }}>Follow</button>
+                    {user.followed ?
+                        <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => unfollow(user.id)}>
+                            Unfollow
+                        </button> :
+                        <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => follow(user.id)}>
+                            Follow
+                        </button>
                     }
                 </div>
             </span>
-
             <span>
                 <span>
                     <div>{user.name}</div>
                     <div>{user.status}</div>
                 </span>
-
                 <span>
                     <div>{'user.location.city'}</div>
                     <div>{'user.location.country'}</div>

@@ -11,11 +11,9 @@ const Login = ({ login, isAuth, captchaURL }) => {
     const onSubmit = (formData) => {
         login(formData.email, formData.password, formData.rememberMe, formData.captcha);
     };
-
     if (isAuth) {
         return <Navigate to='/profile' />;
     }
-
     return (
         <div>
             <h1>Login</h1>

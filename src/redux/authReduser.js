@@ -1,7 +1,7 @@
 import { stopSubmit } from 'redux-form';
 import { authAPI, securityAPI } from '../api/api';
 
-const SET_USER_DATA = 'authReduser/SET_USER_DATA';
+const SET_AUTH_USER_DATA = 'authReduser/SET_AUTH_USER_DATA';
 const GET_CAPTCHA_URL_SUCCESS = 'authReduser/GET_CAPTCHA_URL_SUCCESS';
 
 let initialState = {
@@ -16,7 +16,7 @@ let initialState = {
 const authReduser = (state = initialState, action) => {
     switch (action.type) {
         case GET_CAPTCHA_URL_SUCCESS:
-        case SET_USER_DATA: {
+        case SET_AUTH_USER_DATA: {
             return {
                 ...state,
                 ...action.payload
@@ -29,7 +29,7 @@ const authReduser = (state = initialState, action) => {
 };
 
 export const setAuthUserData = (id, email, login, isAuth) => (
-    { type: SET_USER_DATA, payload: { id, email, login, isAuth } }
+    { type: SET_AUTH_USER_DATA, payload: { id, email, login, isAuth } }
 );
 
 export const getCaptchaURLSuccess = (captchaURL) => (

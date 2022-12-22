@@ -7,20 +7,19 @@ import Profile from './Profile';
 
 class ProfileContainer extends React.Component {
     refreshProfile() {
-        let userId = this.props.match ? this.props.match.params.userId : this.props.authorizedUserId;
+        const userId = this.props.match ? this.props.match.params.userId : this.props.authorizedUserId;
         this.props.getUserProfile(userId);
         this.props.getUserStatus(userId);
     }
-
     componentDidMount() {
         this.refreshProfile();
     }
-
     componentDidUpdate(prevProps) {
-        if ((this.props.match && this.props.match.params.userId !== prevProps.match.params.userId)
-            || (!this.props.match && this.props.match !== prevProps.match)) this.refreshProfile();
+        if (
+            (this.props.match && this.props.match.params.userId !== prevProps.match.params.userId) ||
+            (!this.props.match && this.props.match !== prevProps.match)
+        ) this.refreshProfile();
     }
-
     render() {
         return (
             <Profile

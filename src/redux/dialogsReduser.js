@@ -1,6 +1,6 @@
 const SEND_MESSAGE = 'dialogsReduser/SEND-MESSAGE';
 
-let initialState = {
+const initialState = {
     dialogs: [
         { id: 1, name: 'Andrey' },
         { id: 2, name: 'Denis' },
@@ -8,7 +8,6 @@ let initialState = {
         { id: 4, name: 'Mum' },
         { id: 5, name: 'Dad' }
     ],
-
     messages: [
         { id: 1, message: 'Hi!' },
         { id: 2, message: 'How are you?' },
@@ -21,21 +20,18 @@ let initialState = {
 const dialogsReduser = (state = initialState, action) => {
     switch (action.type) {
         case SEND_MESSAGE: {
-            let newMessage = {
+            const newMessage = {
                 id: 6,
                 message: action.newMessageText
             };
-
             return {
                 ...state,
-
                 messages: [
                     ...state.messages,
                     newMessage
                 ]
             };
         }
-
         default:
             return state;
     }

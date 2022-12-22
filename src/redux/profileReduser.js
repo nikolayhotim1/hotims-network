@@ -7,14 +7,13 @@ const SET_USER_STATUS = 'profileReduser/SET_USER_STATUS';
 const SAVE_PHOTO_SUCCESS = 'profileReduser/SAVE_PHOTO_SUCCESS';
 const DELETE_POST = 'profileReduser/DELETE_POST';
 
-let initialState = {
+const initialState = {
     posts: [
         { id: 1, message: 'Hi! How are you?', likesCount: 20 },
         { id: 2, message: 'It\'s my first post', likesCount: 15 },
         { id: 3, message: 'Forza Juve!', likesCount: 30 },
         { id: 4, message: 'Nikolay is number 1!', likesCount: 35 }
     ],
-
     profile: null,
     status: ''
 };
@@ -22,12 +21,11 @@ let initialState = {
 const profileReduser = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST: {
-            let newPost = {
+            const newPost = {
                 id: 5,
                 message: action.newPostText,
                 likesCount: 0
             };
-
             return {
                 ...state,
                 newPostText: '',
@@ -37,35 +35,30 @@ const profileReduser = (state = initialState, action) => {
                 ]
             };
         }
-
         case SET_USER_PROFILE: {
             return {
                 ...state,
                 profile: action.profile
             };
         }
-
         case SET_USER_STATUS: {
             return {
                 ...state,
                 status: action.status
             };
         }
-
         case SAVE_PHOTO_SUCCESS: {
             return {
                 ...state,
                 profile: { ...state.profile, photos: action.photos }
             };
         }
-
         case DELETE_POST: {
             return {
                 ...state,
                 posts: state.posts.filter(p => p.id !== action.postId)
             };
         }
-
         default:
             return state;
     }
@@ -89,16 +82,14 @@ export const savePhotoSuccess = (photos) => (
 
 export const getUserProfile = (userId) => {
     return async (dispatch) => {
-        let data = await profileAPI.getUserProfile(userId);
-
+        const data = await profileAPI.getUserProfile(userId);
         dispatch(setUserProfile(data));
     };
 };
 
 export const getUserStatus = (userId) => {
     return async (dispatch) => {
-        let data = await profileAPI.getUserStatus(userId);
-
+        const data = await profileAPI.getUserStatus(userId);
         dispatch(setUserStatus(data));
     };
 };
@@ -106,8 +97,7 @@ export const getUserStatus = (userId) => {
 export const getUpdateStatus = (status) => {
     return async (dispatch) => {
         try {
-            let data = await profileAPI.getUpdateStatus(status);
-
+            const data = await profileAPI.getUpdateStatus(status);
             if (data.resultCode === 0) {
                 dispatch(setUserStatus(status));
             }
@@ -119,8 +109,7 @@ export const getUpdateStatus = (status) => {
 
 export const savePhoto = (file) => {
     return async (dispatch) => {
-        let data = await profileAPI.savePhoto(file);
-
+        const data = await profileAPI.savePhoto(file);
         if (data.resultCode === 0) {
             dispatch(savePhotoSuccess(data.data.photos));
         }
@@ -129,9 +118,8 @@ export const savePhoto = (file) => {
 
 export const saveProfile = (profile) => {
     return async (dispatch, getState) => {
-        let userId = getState().auth.id;
-        let data = await profileAPI.saveProfile(profile);
-
+        const userId = getState().auth.id;
+        const data = await profileAPI.saveProfile(profile);
         if (data.resultCode === 0) {
             dispatch(getUserProfile(userId));
         } else {

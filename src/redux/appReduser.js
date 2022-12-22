@@ -2,7 +2,7 @@ import { getAuthUserData } from './authReduser';
 
 const INITIALIZED_SUCCESS = 'appReduser/INITIALIZED_SUCCESS';
 
-let initialState = {
+const initialState = {
     initialized: false,
     globalError: null
 };
@@ -15,7 +15,6 @@ const appReduser = (state = initialState, action) => {
                 initialized: true
             };
         }
-
         default:
             return state;
     }
@@ -27,8 +26,7 @@ export const initializedSuccess = () => (
 
 export const initializeApp = () => {
     return (dispatch) => {
-        let promise = dispatch(getAuthUserData());
-
+        const promise = dispatch(getAuthUserData());
         Promise.all([promise]).then(() => {
             dispatch(initializedSuccess());
         });

@@ -8,7 +8,7 @@ import thunkMiddleware from 'redux-thunk';
 import { reducer as formReducer } from 'redux-form';
 import appReduser from './appReduser';
 
-let reducers = combineReducers({
+const reducers = combineReducers({
     profilePage: profileReduser,
     dialogsPage: dialogsReduser,
     sidebar: sidebarReduser,
@@ -20,6 +20,5 @@ let reducers = combineReducers({
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware)));
-window.__store__ = store;
 
 export default store;

@@ -8,10 +8,7 @@ const maxLength10 = maxLengthCreator(10);
 
 const MyPostsForm = (props) => {
     return (
-        <form
-            className={style.new_post}
-            onSubmit={props.handleSubmit}
-        >
+        <form className={style.new_post} onSubmit={props.handleSubmit}>
             <div>
                 <Field
                     component={Textarea}
@@ -20,7 +17,6 @@ const MyPostsForm = (props) => {
                     validate={[required, maxLength10]}
                 />
             </div>
-
             <div>
                 <button>Add post</button>
             </div>

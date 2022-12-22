@@ -4,7 +4,6 @@ import { createField, Input, Textarea } from '../../common/FormsControls/FormsCo
 import style from './ProfileInfo.module.css';
 import style2 from '../../common/FormsControls/FormsControls.module.css';
 
-
 const ProfileDataForm = ({ handleSubmit, profile, error }) => {
     return (
         <form className={style.info} onSubmit={handleSubmit}>
@@ -16,10 +15,8 @@ const ProfileDataForm = ({ handleSubmit, profile, error }) => {
                 {<div><button>Save</button></div>}
                 {error && <div className={style2.formSummaryError}>{error}</div>}
             </div>
-
             <div className={style.contacts}>
                 <h2>My Contacts:</h2>
-
                 {Object.keys(profile.contacts).map(key => {
                     return (
                         <div key={key}><b>{key}: {createField(Input, `contacts.${key}`, key, [])}</b></div>

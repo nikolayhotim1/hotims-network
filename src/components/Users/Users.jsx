@@ -3,7 +3,7 @@ import style from './Users.module.css';
 import Paginator from '../common/Paginator/Paginator';
 import User from './User';
 
-let Users = ({ totalUsersCount, pageSize, currentPage, onPageChanged, users, followingInProgress, follow, unfollow }) => {
+const Users = ({ totalUsersCount, pageSize, currentPage, onPageChanged, users, followingInProgress, follow, unfollow }) => {
     return (
         <div className={style.users_wrapper}>
             <Paginator
@@ -12,7 +12,6 @@ let Users = ({ totalUsersCount, pageSize, currentPage, onPageChanged, users, fol
                 currentPage={currentPage}
                 onPageChanged={onPageChanged}
             />
-
             {users.map(u => (
                 <User
                     key={u.id}

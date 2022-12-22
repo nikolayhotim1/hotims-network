@@ -22,54 +22,30 @@ class App extends Component {
     catchAllUnhandledErrors = (reason, promise) => {
         console.log(`Some error occured: ${reason}, ${promise}`);
     };
-
     componentDidMount() {
         this.props.initializeApp();
         window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors);
     }
-
     componentWillUnmount() {
         window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors);
     }
-
     render() {
         if (!this.props.initialized) {
             return <Preloader />
         }
-
         return (
             <div className='app-wrapper'>
                 <HeaderContainer />
                 <Navbar />
-
                 <div className='app-wrapper-content'>
                     <Suspense fallback={<Preloader />}>
                         <Routes>
-                            <Route
-                                path='/profile'
-                                element={<ProfileContainer />}
-                            >
-                                <Route
-                                    path='/profile/:userId'
-                                    element={<ProfileContainer />}
-                                />
+                            <Route path='/profile' element={<ProfileContainer />}>
+                                <Route path='/profile/:userId' element={<ProfileContainer />} />
                             </Route>
-
-                            <Route
-                                path='/dialogs'
-                                element={<DialogsContainer />}
-                            />
-
-                            <Route
-                                path='/users'
-                                element={<UsersConatainer />}
-                            />
-
-                            <Route
-                                path='/login'
-                                element={<Login />}
-                            />
-
+                            <Route path='/dialogs' element={<DialogsContainer />} />
+                            <Route path='/users' element={<UsersConatainer />} />
+                            <Route path='/login' element={<Login />} />
                             <Route path='/news' element={<News />} />
                             <Route path='/music' element={<Music />} />
                             <Route path='/settings' element={<Settings />} />
@@ -85,16 +61,13 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({ initialized: state.app.initialized });
 const AppContainer = connect(mapStateToProps, { initializeApp })(App);
-
-const MainApp = (props) => {
+const MainApp = () => {
     return (
-        <React.StrictMode>
-            <HashRouter>
-                <Provider store={store}>
-                    <AppContainer />
-                </Provider>
-            </HashRouter>
-        </React.StrictMode>
+        <HashRouter>
+            <Provider store={store}>
+                <AppContainer />
+            </Provider>
+        </HashRouter>
     );
 };
 

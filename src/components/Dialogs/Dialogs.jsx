@@ -8,30 +8,24 @@ import DialogsForm from './DialogsForm';
 const DialogsReduxForm = reduxForm({ form: 'dialog' })(DialogsForm);
 
 const Dialogs = (props) => {
-    let state = props.dialogsPage;
-
-    let dialogsElements = state.dialogs.map(
+    const state = props.dialogsPage;
+    const dialogsElements = state.dialogs.map(
         d => <DialogItem name={d.name} key={d.id} id={d.id} />
     );
-
-    let messagesElements = state.messages.map(
+    const messagesElements = state.messages.map(
         m => <Message message={m.message} key={m.id} />
     );
-
-    let addNewMessage = (values) => {
+    const addNewMessage = (values) => {
         props.sendMessage(values.newMessageText);
     };
-
     return (
         <div className={style.dialogs}>
             <div className={style.dialogs_items}>
                 {dialogsElements}
             </div>
-
             <div className={style.messages}>
                 {messagesElements}
             </div>
-
             <DialogsReduxForm onSubmit={addNewMessage} />
         </div>
     );

@@ -4,12 +4,9 @@ import style from './FormsControls.module.css';
 
 const FormsControl = ({ meta: { touched, error }, children }) => {
     const hasError = touched && error;
-
     return (
         <div className={`${style.formControl} ${hasError ? style.error : ''}`}>
-            <div>
-                {children}
-            </div>
+            <div>{children}</div>
             {hasError && <span>{error}</span>}
         </div>
     );
@@ -40,7 +37,8 @@ export const createField = (component, name, placeholder, validators, props = {}
                 placeholder={placeholder}
                 validate={validators}
                 {...props}
-            />{text}
+            />
+            {text}
         </div>
     );
 };

@@ -2,7 +2,7 @@ import dialogsReduser from './dialogsReduser';
 import profileReduser from './profileReduser';
 import sidebarReduser from './sidebarReduser';
 
-let store = {
+const store = {
     _state: {
         profilePage: {
             posts: [
@@ -11,10 +11,8 @@ let store = {
                 { id: 3, message: 'Forza Juve!', likesCount: 30 },
                 { id: 4, message: 'Nikolay is number 1!', likesCount: 35 }
             ],
-
             newPostText: 'Aloha!'
         },
-
         dialogsPage: {
             dialogs: [
                 { id: 1, name: 'Andrey' },
@@ -23,7 +21,6 @@ let store = {
                 { id: 4, name: 'Mum' },
                 { id: 5, name: 'Dad' }
             ],
-
             messages: [
                 { id: 1, message: 'Hi!' },
                 { id: 2, message: 'How are you?' },
@@ -31,60 +28,48 @@ let store = {
                 { id: 4, message: 'Yo!' },
                 { id: 5, message: 'Yo!' }
             ],
-
             newMessageText: 'Guten Tag!'
         },
-
         sidebar: {
             // some code for sidebar showing few my friends
         }
     },
-
     _callSubscriber() {
         console.log('State changed');
     },
-
     getState() {
         return this._state;
     },
-
     subscribe(observer) {
         this._callSubscriber = observer;
     },
-
     addPost() {
-        let newPost = {
+        const newPost = {
             id: 5,
             message: this._state.profilePage.newPostText,
             likesCount: 0
         };
-
         this._state.profilePage.posts.push(newPost);
         this._state.profilePage.newPostText = '';
         this._callSubscriber(this._state);
     },
-
     updateNewPostText(newText) {
         this._state.profilePage.newPostText = newText;
         this._callSubscriber(this._state);
     },
-
     addMessage() {
-        let newMessage = {
+        const newMessage = {
             id: 6,
             message: this._state.dialogsPage.newMessageText
         };
-
         this._state.dialogsPage.messages.push(newMessage);
         this._state.dialogsPage.newMessageText = '';
         this._callSubscriber(this._state);
     },
-
     updateNewMessageText(newMessageText) {
         this._state.dialogsPage.newMessageText = newMessageText;
         this._callSubscriber(this._state);
     },
-
     dispatch(action) {
         this._state.profilePage = profileReduser(this._state.profilePage, action);
         this._state.dialogsPage = dialogsReduser(this._state.dialogsPage, action);
@@ -92,7 +77,5 @@ let store = {
         this._callSubscriber(this._state);
     }
 };
-
-window.store = store;
 
 export default store;

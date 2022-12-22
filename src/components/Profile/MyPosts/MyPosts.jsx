@@ -7,24 +7,17 @@ import MyPostsForm from './MyPostsForm';
 const MyPostsReduxForm = reduxForm({ form: 'post' })(MyPostsForm);
 
 const MyPosts = (props) => {
-    let postsElements = props.posts.map(
+    const postsElements = props.posts.map(
         p => <Post key={p.id} message={p.message} likesCount={p.likesCount} />
     );
-
-
-    let onAddPost = (values) => {
+    const onAddPost = (values) => {
         props.addPost(values.newPostText);
     };
-
     return (
         <div className={style.my_posts}>
             <h2>My posts</h2>
-
             <MyPostsReduxForm onSubmit={onAddPost} />
-
-            <div className={style.posts}>
-                {postsElements}
-            </div>
+            <div className={style.posts}>{postsElements}</div>
         </div>
     );
 };
