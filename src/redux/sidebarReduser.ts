@@ -1,6 +1,8 @@
 const initialState = {};
 
-const sidebarReduser = (state = initialState) => {
+type InitialStateType = typeof initialState;
+
+const sidebarReduser = (state = initialState): InitialStateType => {
     return state;
 };
 

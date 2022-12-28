@@ -3,11 +3,12 @@ import { getAuthUserData } from './authReduser';
 const INITIALIZED_SUCCESS = 'appReduser/INITIALIZED_SUCCESS';
 
 const initialState = {
-    initialized: false,
-    globalError: null
+    initialized: false
 };
 
-const appReduser = (state = initialState, action) => {
+type InitialStateType = typeof initialState;
+
+const appReduser = (state = initialState, action: any): InitialStateType => {
     switch (action.type) {
         case INITIALIZED_SUCCESS: {
             return {
@@ -20,12 +21,16 @@ const appReduser = (state = initialState, action) => {
     }
 };
 
-export const initializedSuccess = () => (
+type InitializedSuccessType = {
+    type: typeof INITIALIZED_SUCCESS
+};
+
+export const initializedSuccess = (): InitializedSuccessType => (
     { type: INITIALIZED_SUCCESS }
 );
 
 export const initializeApp = () => {
-    return (dispatch) => {
+    return (dispatch: any) => {
         const promise = dispatch(getAuthUserData());
         Promise.all([promise]).then(() => {
             dispatch(initializedSuccess());
