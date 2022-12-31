@@ -1,9 +1,29 @@
-import React from 'react';
 import style from './Users.module.css';
 import Paginator from '../common/Paginator/Paginator';
 import User from './User';
+import { FC } from 'react';
+import { UserType } from '../../types/types';
 
-const Users = ({ totalUsersCount, pageSize, currentPage, onPageChanged, users, followingInProgress, follow, unfollow }) => {
+type UsersType = {
+    totalUsersCount: number,
+    pageSize: number,
+    currentPage: number,
+    users: Array<UserType>,
+    followingInProgress: Array<number>,
+    onPageChanged: (pageNumber: number) => void,
+    follow: (userId: number) => void,
+    unfollow: (userId: number) => void
+};
+const Users: FC<UsersType> = ({
+    totalUsersCount,
+    pageSize,
+    currentPage,
+    users,
+    followingInProgress,
+    onPageChanged,
+    follow,
+    unfollow
+}) => {
     return (
         <div className={style.users_wrapper}>
             <Paginator

@@ -1,6 +1,6 @@
-import dialogsReduser from './dialogsReduser';
-import profileReduser from './profileReduser';
-import sidebarReduser from './sidebarReduser';
+import dialogsReducer from './dialogsReducer';
+import profileReducer from './profileReducer';
+import sidebarReducer from './sidebarReducer';
 
 const store = {
     _state: {
@@ -71,9 +71,9 @@ const store = {
         this._callSubscriber(this._state);
     },
     dispatch(action) {
-        this._state.profilePage = profileReduser(this._state.profilePage, action);
-        this._state.dialogsPage = dialogsReduser(this._state.dialogsPage, action);
-        this._state.sidebar = sidebarReduser(this._state.sidebar, action);
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action);
         this._callSubscriber(this._state);
     }
 };

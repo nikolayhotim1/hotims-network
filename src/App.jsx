@@ -7,7 +7,7 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import HeaderContainer from './components/Header/HeaderContainer';
 import { connect } from 'react-redux';
-import { initializeApp } from './redux/appReduser';
+import { initializeApp } from './redux/appReducer';
 import Preloader from './components/common/Preloader/Preloader';
 import store from './redux/reduxStore';
 import { HashRouter } from 'react-router-dom';
@@ -44,7 +44,7 @@ class App extends Component {
                                 <Route path='/profile/:userId' element={<ProfileContainer />} />
                             </Route>
                             <Route path='/dialogs' element={<DialogsContainer />} />
-                            <Route path='/users' element={<UsersConatainer />} />
+                            <Route path='/users' element={<UsersConatainer pageTitle={'Samurai'} />} />
                             <Route path='/login' element={<Login />} />
                             <Route path='/news' element={<News />} />
                             <Route path='/music' element={<Music />} />

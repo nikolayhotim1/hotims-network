@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import LoginForm from './LoginForm';
-import { login } from '../../redux/authReduser';
+import { login } from '../../redux/authReducer';
 import { Navigate } from 'react-router-dom';
 
 const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm);

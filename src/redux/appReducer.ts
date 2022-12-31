@@ -1,13 +1,10 @@
-import { getAuthUserData } from './authReduser';
+import { getAuthUserData } from './authReducer';
 
 const INITIALIZED_SUCCESS = 'appReduser/INITIALIZED_SUCCESS';
-
 const initialState = {
     initialized: false
 };
-
 type InitialStateType = typeof initialState;
-
 const appReduser = (state = initialState, action: any): InitialStateType => {
     switch (action.type) {
         case INITIALIZED_SUCCESS: {
@@ -20,15 +17,12 @@ const appReduser = (state = initialState, action: any): InitialStateType => {
             return state;
     }
 };
-
 type InitializedSuccessType = {
     type: typeof INITIALIZED_SUCCESS
 };
-
 export const initializedSuccess = (): InitializedSuccessType => (
     { type: INITIALIZED_SUCCESS }
 );
-
 export const initializeApp = () => {
     return (dispatch: any) => {
         const promise = dispatch(getAuthUserData());
