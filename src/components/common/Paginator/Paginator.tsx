@@ -39,5 +39,4 @@ const Paginator: FC<PropsType> = ({ totalItemsCount, pageSize, currentPage, onPa
         </div>
     );
 };
-
 export default Paginator;

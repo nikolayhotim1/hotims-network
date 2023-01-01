@@ -44,5 +44,4 @@ const Users: FC<UsersType> = ({
         </div>
     );
 };
-
 export default Users;

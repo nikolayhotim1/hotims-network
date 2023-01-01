@@ -82,5 +82,4 @@ export const logout = () => {
         }
     };
 };
-
 export default authReduser;

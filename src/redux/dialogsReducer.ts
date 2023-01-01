@@ -50,5 +50,4 @@ type SendMessageActionCreatorType = {
 export const sendMessageActionCreator = (newMessageText: string): SendMessageActionCreatorType => (
     { type: SEND_MESSAGE, newMessageText }
 );
-
 export default dialogsReduser;

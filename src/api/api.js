@@ -7,7 +7,6 @@ const instance = axios.create({
         'API-KEY': '7d7c0cc8-9365-47ef-8d77-ea42e5daa598'
     }
 });
-
 export const usersAPI = {
     getUsers(currentPage, pageSize) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`).then(response => response.data);
@@ -19,7 +18,6 @@ export const usersAPI = {
         return instance.delete(`follow/${userId}`).then(response => response.data);
     }
 };
-
 export const authAPI = {
     getAuthUserData() {
         return instance.get(`auth/me`).then(response => response.data);
@@ -31,13 +29,11 @@ export const authAPI = {
         return instance.delete(`auth/login`).then(response => response.data);
     }
 };
-
 export const securityAPI = {
     getCaptchaURL() {
         return instance.get(`security/get-captcha-url`).then(response => response.data);
     }
 };
-
 export const profileAPI = {
     getUserProfile(userId) {
         return instance.get(`profile/${userId}`).then(response => response.data);

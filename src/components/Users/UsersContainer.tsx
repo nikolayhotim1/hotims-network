@@ -61,7 +61,6 @@ const mapStateToProps = (state: AppSateType): MapStatePropsType => ({
     followingInProgress: getFollowingInProgress(state),
     isFetching: getIsFetching(state)
 });
-
 export default compose(connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppSateType>(
     mapStateToProps,
     { requestUsers, follow, unfollow }

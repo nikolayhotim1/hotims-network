@@ -143,5 +143,4 @@ export const saveProfile = (profile: ProfileType) => {
         }
     };
 };
-
 export default profileReducer;

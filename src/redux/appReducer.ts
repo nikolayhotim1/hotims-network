@@ -31,5 +31,4 @@ export const initializeApp = () => {
         });
     };
 };
-
 export default appReduser;

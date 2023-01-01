@@ -60,5 +60,4 @@ class ProfileStatus extends Component<PropsType, StateType> {
         );
     }
 }
-
 export default ProfileStatus;
