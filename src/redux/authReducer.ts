@@ -1,3 +1,4 @@
+import { ResultCodesEnum, ResultCodeForCaptchaEnum } from './../api/api';
 import { stopSubmit } from 'redux-form';
 import { authAPI, securityAPI } from '../api/api';
 
@@ -34,9 +35,12 @@ type SetAuthUserDataType = {
         isAuth: boolean
     }
 };
-export const setAuthUserData = (id: number | null, email: string | null, login: string | null, isAuth: boolean): SetAuthUserDataType => (
-    { type: SET_AUTH_USER_DATA, payload: { id, email, login, isAuth } }
-);
+export const setAuthUserData = (
+    id: number | null,
+    email: string | null,
+    login: string | null,
+    isAuth: boolean
+): SetAuthUserDataType => ({ type: SET_AUTH_USER_DATA, payload: { id, email, login, isAuth } });
 type GetCaptchaURLSuccessType = {
     type: typeof GET_CAPTCHA_URL_SUCCESS,
     payload: { captchaURL: string }
@@ -47,7 +51,7 @@ export const getCaptchaURLSuccess = (captchaURL: string): GetCaptchaURLSuccessTy
 export const getAuthUserData = () => {
     return async (dispatch: any) => {
         const data = await authAPI.getAuthUserData();
-        if (data.resultCode === 0) {
+        if (data.resultCode === ResultCodesEnum.Success) {
             const { id, email, login } = data.data;
             dispatch(setAuthUserData(id, email, login, true));
         }
@@ -56,10 +60,10 @@ export const getAuthUserData = () => {
 export const login = (email: string | null, password: string | null, rememberMe: boolean, captcha: string | null) => {
     return async (dispatch: any) => {
         const data = await authAPI.login(email, password, rememberMe, captcha);
-        if (data.resultCode === 0) {
+        if (data.resultCode === ResultCodesEnum.Success) {
             dispatch(getAuthUserData());
         } else {
-            if (data.resultCode === 10) {
+            if (data.resultCode === ResultCodeForCaptchaEnum.CaptchaIsRequired) {
                 dispatch(getCaptchaURL());
             }
             const message = data.messages.length > 0 ? data.messages[0] : 'Some error';
