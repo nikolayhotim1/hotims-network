@@ -20,6 +20,7 @@ export type LoginFormValuesType = {
     rememberMe: boolean,
     captcha: string | null
 };
+export type LoginFormValuesTypeKeys = Extract<keyof LoginFormValuesType, string>;
 const Login: FC<MapStatePropsType & MapDispatchPropsType> = ({ login, isAuth, captchaURL }) => {
     const onSubmit = (formData: LoginFormValuesType) => {
         login(formData.email, formData.password, formData.rememberMe, formData.captcha);

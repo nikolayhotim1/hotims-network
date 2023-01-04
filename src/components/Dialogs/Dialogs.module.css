@@ -5,23 +5,23 @@
 }
 
 .dialogs_items {
-    color: aquamarine;
+    color: white;
 }
 
 .dialogs_items .active {
-    color: gold;
+    color: peachpuff;
 }
 
 .dialog {
-    border: 1px solid lime;
+    border: 1px solid lightskyblue;
 }
 
 .messages {
-    color: firebrick;
+    color: darkblue;
 }
 
 .message {
-    border: 1px dashed lightpink;
+    border: 1px solid lightcoral;
 }
 
 .new_message {

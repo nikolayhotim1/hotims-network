@@ -30,14 +30,14 @@ export const Input: FC<WrappedFieldProps> = ({ input, ...props }) => {
         </FormsControl>
     );
 };
-export const createField = (
+export function createField<FormKeysType extends string>(
     component: FC<WrappedFieldProps>,
-    name: string,
+    name: FormKeysType,
     placeholder: string | null,
     validators: Array<FieldValidatorType>,
     props = {},
     text = ''
-) => {
+) {
     return (
         <div>
             <Field

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Preloader from '../../common/Preloader/Preloader';
 import userPhoto from '../../../assets/images/computer-user-icon.png';
+import mainImage from '../../../assets/images/the-codefather.jpg';
 import style from './ProfileInfo.module.css';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 import ProfileDataForm from './ProfileDataForm';
@@ -26,7 +27,7 @@ const ProfileInfo = ({ isOwner, profile, status, getUpdateStatus, savePhoto, sav
     return (
         <div>
             <div className={style.main_image}>
-                <img src='https://wallpaperaccess.com/full/2130425.jpg' alt='Savanna' />
+                <img src={mainImage} alt='Main Cover' />
             </div>
             <div className={style.profile_wrapper}>
                 <div className={style.avatar}>

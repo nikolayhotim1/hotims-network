@@ -1,6 +1,6 @@
 .navbar {
     grid-area: n;
-    background-color: burlywood;
+    background-color: lightskyblue;
     padding: 10px;
 }
 
@@ -10,5 +10,5 @@ a {
 }
 
 a.active {
-    color: gold;
+    color: peachpuff;
 }

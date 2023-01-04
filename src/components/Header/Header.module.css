@@ -1,13 +1,13 @@
 .header {
     grid-area: h;
-    background-color: green;
+    background-color: lightcoral;
 }
 
 .header img {
-    height: calc(100% - 20px);
-    padding: 10px;
+    height: 100%;
 }
 
 .login_block {
     float: right;
+    padding: 10px 10px 0 0;
 }
