@@ -40,8 +40,8 @@ class ProfileStatus extends Component<PropsType, StateType> {
         return (
             <div>
                 {!this.state.editMode &&
-                    <div>
-                        <span onDoubleClick={this.activateEditMode}>
+                    <div onClick={this.activateEditMode}>
+                        <span>
                             {this.props.status || 'My status will be here'}
                         </span>
                     </div>
