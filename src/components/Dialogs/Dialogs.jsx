@@ -6,7 +6,6 @@ import { reduxForm } from 'redux-form';
 import DialogsForm from './DialogsForm';
 
 const DialogsReduxForm = reduxForm({ form: 'dialog' })(DialogsForm);
-
 const Dialogs = (props) => {
     const state = props.dialogsPage;
     const dialogsElements = state.dialogs.map(
@@ -20,7 +19,7 @@ const Dialogs = (props) => {
     };
     return (
         <div className={style.dialogs}>
-            <div className={style.dialogs_items}>
+            <div>
                 {dialogsElements}
             </div>
             <div className={style.messages}>
@@ -30,5 +29,4 @@ const Dialogs = (props) => {
         </div>
     );
 };
-
 export default Dialogs;

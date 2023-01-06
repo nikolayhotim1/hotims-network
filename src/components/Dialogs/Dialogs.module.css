@@ -9,24 +9,27 @@
     margin: 5px;
 }
 
-.dialogs_items {
-    color: white;
-}
-
-.dialogs_items .active {
-    color: peachpuff;
-}
-
 .dialog {
-    border: 1px solid lightskyblue;
-}
-
-.messages {
-    color: darkblue;
+    background-color: lightskyblue;
 }
 
 .message {
-    border: 1px solid lightblue;
+    background-color: lightblue;
+}
+
+.a {
+    text-decoration: none;
+    color: white;
+}
+
+.active {
+    text-decoration: none;
+    color: peachpuff;
+}
+
+.messages {
+    color: black;
+    font-style: italic;
 }
 
 .new_message {

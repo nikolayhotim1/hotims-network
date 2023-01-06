@@ -1,4 +1,5 @@
 import Users from './Users';
+import style from './Users.module.css';
 import { connect } from 'react-redux';
 import { requestUsers, follow, unfollow } from '../../redux/usersReducer';
 import Preloader from '../common/Preloader/Preloader';
@@ -37,7 +38,7 @@ class UsersContainer extends Component<PropsType> {
     render() {
         return (
             <>
-                <h1>{this.props.pageTitle}</h1>
+                <h1 className={style.title}>{this.props.pageTitle}</h1>
                 {this.props.isFetching ? <Preloader /> : null}
                 <Users
                     totalUsersCount={this.props.totalUsersCount}
