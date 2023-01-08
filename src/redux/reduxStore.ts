@@ -1,27 +1,28 @@
-import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
-import authReducer from './authReducer';
-import dialogsReducer from './dialogsReducer';
-import profileReducer from './profileReducer';
-import sidebarReducer from './sidebarReducer';
-import usersReducer from './usersReducer';
-import thunkMiddleware from 'redux-thunk';
-import { reducer as formReducer } from 'redux-form';
-import appReducer from './appReducer';
+import { Action, applyMiddleware, combineReducers, compose, createStore } from 'redux'
+import authReducer from './authReducer'
+import dialogsReducer from './dialogsReducer'
+import profileReducer from './profileReducer'
+import sidebarReducer from './sidebarReducer'
+import usersReducer from './usersReducer'
+import thunkMiddleware, { ThunkAction } from 'redux-thunk'
+import { reducer as formReducer } from 'redux-form'
+import appReducer from './appReducer'
 
 const rootReducer = combineReducers({
-    profilePage: profileReducer,
-    dialogsPage: dialogsReducer,
-    sidebar: sidebarReducer,
-    usersPage: usersReducer,
-    auth: authReducer,
-    form: formReducer,
-    app: appReducer
-});
-type PropertiesTypes<T> = T extends { [key: string]: infer U } ? U : never;
-export type InferActionsTypes<T extends { [key: string]: (...args: any[]) => any }> = ReturnType<PropertiesTypes<T>>;
-type RootReducerType = typeof rootReducer;
+	profilePage: profileReducer,
+	dialogsPage: dialogsReducer,
+	sidebar: sidebarReducer,
+	usersPage: usersReducer,
+	auth: authReducer,
+	form: formReducer,
+	app: appReducer
+})
+type PropertiesTypes<T> = T extends { [key: string]: infer U } ? U : never
+export type InferActionsTypes<T extends { [key: string]: (...args: any[]) => any }> = ReturnType<PropertiesTypes<T>>
+export type BaseThunkType<A extends Action, R = Promise<void>> = ThunkAction<R, AppSateType, unknown, A>
+type RootReducerType = typeof rootReducer
 // @ts-ignore
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)));
-export type AppSateType = ReturnType<RootReducerType>;
-export default store;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)))
+export type AppSateType = ReturnType<RootReducerType>
+export default store

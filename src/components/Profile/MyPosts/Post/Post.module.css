@@ -1,8 +1,9 @@
 .item {
+    margin-top: 10px;
     color: darkblue;
 }
 
 .item img {
     width: 300px;
-    border-radius: 30px;
+    border-radius: 20px;
 }
