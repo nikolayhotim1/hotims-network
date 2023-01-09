@@ -13,9 +13,9 @@ const initialState = {
 		{ id: 3, message: 'Yo!' }
 	] as Array<MessageType>
 }
-type InitialStateType = typeof initialState
+export type InitialStateType = typeof initialState
 export const actions = {
-	sendMessageActionCreator: (newMessageText: string) =>
+	sendMessage: (newMessageText: string) =>
 		({
 			type: 'hotims-network/dialogsReduser/SEND-MESSAGE',
 			newMessageText

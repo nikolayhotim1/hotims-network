@@ -17,12 +17,11 @@ const rootReducer = combineReducers({
 	form: formReducer,
 	app: appReducer
 })
-type PropertiesTypes<T> = T extends { [key: string]: infer U } ? U : never
-export type InferActionsTypes<T extends { [key: string]: (...args: any[]) => any }> = ReturnType<PropertiesTypes<T>>
-export type BaseThunkType<A extends Action, R = Promise<void>> = ThunkAction<R, AppSateType, unknown, A>
 type RootReducerType = typeof rootReducer
+export type AppSateType = ReturnType<RootReducerType>
+export type InferActionsTypes<T> = T extends { [keys: string]: (...args: any[]) => infer U } ? U : never
+export type BaseThunkType<A extends Action = Action, R = Promise<void>> = ThunkAction<R, AppSateType, unknown, A>
 // @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)))
-export type AppSateType = ReturnType<RootReducerType>
 export default store
