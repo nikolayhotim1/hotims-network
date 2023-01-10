@@ -13,3 +13,7 @@
     grid-area: c;
     background-color: peachpuff;
 }
+
+.not-found {
+    padding: 10px;
+}

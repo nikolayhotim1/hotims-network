@@ -1,3 +1,4 @@
+import { ComponentType } from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { withAuthRedirect } from '../../hocs/withAuthRedirect'
@@ -10,4 +11,4 @@ const mapStateToProps = (state: AppSateType) => {
 		dialogsPage: state.dialogsPage
 	}
 }
-export default compose(connect(mapStateToProps, { sendMessage: actions.sendMessage }), withAuthRedirect)(Dialogs)
+export default compose<ComponentType>(connect(mapStateToProps, { sendMessage: actions.sendMessage }), withAuthRedirect)(Dialogs)
