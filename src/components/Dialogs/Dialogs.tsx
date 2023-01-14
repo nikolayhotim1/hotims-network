@@ -2,19 +2,13 @@ import { FC } from 'react'
 import style from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem'
 import Message from './Message/Message'
-import { reduxForm } from 'redux-form'
-import DialogsForm from './DialogsForm'
+import DialogsForm, { NewMessageFormValuesType } from './DialogsForm'
 import { InitialStateType } from '../../redux/dialogsReducer'
 
 type PropsType = {
 	dialogsPage: InitialStateType
 	sendMessage: (newMessageText: string | null) => void
 }
-export type NewMessageFormValuesType = {
-	newMessageText: string | null
-}
-export type NewMessageFormValuesTypeKeys = Extract<keyof NewMessageFormValuesType, string>
-const DialogsReduxForm = reduxForm<NewMessageFormValuesType>({ form: 'dialog' })(DialogsForm)
 const Dialogs: FC<PropsType> = (props) => {
 	const state = props.dialogsPage
 	const dialogsElements = state.dialogs.map((d) => <DialogItem name={d.name} key={d.id} id={d.id} />)
@@ -26,7 +20,7 @@ const Dialogs: FC<PropsType> = (props) => {
 		<div className={style.dialogs}>
 			<div>{dialogsElements}</div>
 			<div className={style.messages}>{messagesElements}</div>
-			<DialogsReduxForm onSubmit={addNewMessage} />
+			<DialogsForm onSubmit={addNewMessage} />
 		</div>
 	)
 }

@@ -1,8 +1,12 @@
-import React from 'react'
 import style from './Post.module.css'
 import postImage from '../../../../assets/images/the-codefather-2.png'
+import { FC } from 'react'
 
-const Post = (props) => {
+type PropsType = {
+	message: string
+	likesCount: number
+}
+const Post: FC<PropsType> = (props) => {
 	return (
 		<div className={style.item}>
 			<div>{props.message}</div>
@@ -11,5 +15,4 @@ const Post = (props) => {
 		</div>
 	)
 }
-
 export default Post

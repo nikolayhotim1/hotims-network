@@ -14,7 +14,7 @@ import {
 } from '../../redux/usersSelectors'
 import { Component } from 'react'
 import { UserType } from '../../types/types'
-import { AppSateType } from '../../redux/reduxStore'
+import { AppStateType } from '../../redux/reduxStore'
 
 type MapStatePropsType = {
 	totalUsersCount: number
@@ -61,7 +61,7 @@ class UsersContainer extends Component<PropsType> {
 		)
 	}
 }
-const mapStateToProps = (state: AppSateType): MapStatePropsType => ({
+const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
 	totalUsersCount: getTotalUsersCount(state),
 	pageSize: getPageSize(state),
 	currentPage: getCurrentPage(state),
@@ -70,7 +70,7 @@ const mapStateToProps = (state: AppSateType): MapStatePropsType => ({
 	isFetching: getIsFetching(state)
 })
 export default compose(
-	connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppSateType>(mapStateToProps, {
+	connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(mapStateToProps, {
 		requestUsers,
 		follow,
 		unfollow

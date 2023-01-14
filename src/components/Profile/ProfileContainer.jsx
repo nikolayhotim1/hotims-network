@@ -35,21 +35,17 @@ class ProfileContainer extends React.Component {
 		)
 	}
 }
-
 const AuthRedirectComponent = withAuthRedirect(ProfileContainer)
-
 const mapStateToProps = (state) => ({
 	profile: state.profilePage.profile,
 	status: state.profilePage.status,
 	authorizedUserId: state.auth.id,
 	isAuth: state.auth.isAuth
 })
-
 const ProfileUrlMatch = (props) => {
 	const match = useMatch('profile/:userId')
 	return <AuthRedirectComponent {...props} match={match} />
 }
-
 export default connect(mapStateToProps, { getUserProfile, getUserStatus, getUpdateStatus, savePhoto, saveProfile })(
 	ProfileUrlMatch
 )

@@ -9,7 +9,7 @@ import HeaderContainer from './components/Header/HeaderContainer'
 import { connect } from 'react-redux'
 import { initializeApp } from './redux/appReducer'
 import Preloader from './components/common/Preloader/Preloader'
-import store, { AppSateType } from './redux/reduxStore'
+import store, { AppStateType } from './redux/reduxStore'
 import { HashRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
@@ -59,7 +59,7 @@ class App extends Component<MapPropsType & DispatchPropsType> {
 		)
 	}
 }
-const mapStateToProps = (state: AppSateType) => ({ initialized: state.app.initialized })
+const mapStateToProps = (state: AppStateType) => ({ initialized: state.app.initialized })
 const AppContainer = connect(mapStateToProps, { initializeApp })(App)
 const MainApp: FC = () => {
 	return (
