@@ -71,16 +71,16 @@ const ProfileData: FC<ProfileDataPropsType> = ({ isOwner, profile, status, getUp
 			<div>
 				<h1>{profile.fullName}</h1>
 				<ProfileStatusWithHooks isOwner={isOwner} status={status} getUpdateStatus={getUpdateStatus} />
-				<p>
+				<div className={style.item}>
 					<b>About me:</b> {profile.aboutMe}
-				</p>
-				<p>
+				</div>
+				<div className={style.item}>
 					<b>Looking for a job:</b> {profile.lookingForAJob ? 'Yes' : 'No'}
-				</p>
+				</div>
 				{profile.lookingForAJob && (
-					<p>
+					<div className={style.item}>
 						<b>My skills:</b> {profile.lookingForAJobDescription}
-					</p>
+					</div>
 				)}
 				{isOwner && (
 					<div>
@@ -105,9 +105,9 @@ type ContactPropsType = {
 }
 const Contact: FC<ContactPropsType> = ({ contactTitle, contactValue }) => {
 	return (
-		<p>
+		<div className={style.item}>
 			<b>{contactTitle}:</b> {contactValue}
-		</p>
+		</div>
 	)
 }
 export default ProfileInfo

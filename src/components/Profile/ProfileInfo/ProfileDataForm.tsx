@@ -14,14 +14,14 @@ const ProfileDataForm: FC<InjectedFormProps<ProfileType, PropsType> & PropsType>
 		<form className={style.info} onSubmit={handleSubmit}>
 			<div>
 				<h1>{createField(Input, 'fullName', 'Full Name', [])}</h1>
-				<p>
+				<div>
 					<b>About me:</b> {createField<ProfileDataFormValuesTypeKeys>(Textarea, 'aboutMe', 'About me', [])}
-				</p>
-				<p>
+				</div>
+				<div>
 					<b>Looking for a job:</b>{' '}
 					{createField<ProfileDataFormValuesTypeKeys>(Input, 'lookingForAJob', '', [], { type: 'checkbox' })}
-				</p>
-				<p>
+				</div>
+				<div>
 					<b>My skills:</b>{' '}
 					{createField<ProfileDataFormValuesTypeKeys>(
 						Textarea,
@@ -29,7 +29,7 @@ const ProfileDataForm: FC<InjectedFormProps<ProfileType, PropsType> & PropsType>
 						'My professional skills',
 						[]
 					)}
-				</p>
+				</div>
 				{
 					<div>
 						<button type='submit'>Save</button>
