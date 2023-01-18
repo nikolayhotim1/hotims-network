@@ -1,10 +1,6 @@
 import { instance, GetItemsType, APIResponseType } from './api'
 
 export const usersAPI = {
-	async getUsers(currentPage: number, pageSize: number) {
-		const response = await instance.get<GetItemsType>(`users?page=${currentPage}&count=${pageSize}`)
-		return response.data
-	},
 	async getNewFollowedUser(userId: number) {
 		const response = await instance.post<APIResponseType>(`follow/${userId}`, {})
 		return response.data
@@ -12,5 +8,10 @@ export const usersAPI = {
 	async getNewUnfollowedUser(userId: number) {
 		const response = await instance.delete(`follow/${userId}`)
 		return response.data as Promise<APIResponseType>
+	},
+	async getUsers(page: number, pageSize: number, term: string = '', friend: null | boolean = null) {
+		const friendData = friend === null ? '' : `&friend=${friend}`
+		const response = await instance.get<GetItemsType>(`users?page=${page}&count=${pageSize}&term=${term}${friendData}`)
+		return response.data
 	}
 }
