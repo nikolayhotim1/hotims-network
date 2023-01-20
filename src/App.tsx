@@ -15,8 +15,8 @@ import { Provider } from 'react-redux'
 
 const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer'))
 const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer'))
-const UsersConatainer = lazy(() => import('./components/Users/UsersContainer'))
-const Login = lazy(() => import('./components/Login/Login'))
+const UsersPage = lazy(() => import('./components/Users/UsersPage').then((module) => ({ default: module.UsersPage })))
+const LoginPage = lazy(() => import('./components/Login/LoginPage').then((module) => ({ default: module.LoginPage })))
 type MapPropsType = ReturnType<typeof mapStateToProps>
 type DispatchPropsType = {
 	initializeApp: () => void
@@ -45,8 +45,8 @@ class App extends Component<MapPropsType & DispatchPropsType> {
 								<Route path='/profile/:userId' element={<ProfileContainer />} />
 							</Route>
 							<Route path='/dialogs' element={<DialogsContainer />} />
-							<Route path='/users' element={<UsersConatainer pageTitle={'Samurai'} />} />
-							<Route path='/login' element={<Login />} />
+							<Route path='/users' element={<UsersPage pageTitle={'Samurai'} />} />
+							<Route path='/login' element={<LoginPage />} />
 							<Route path='/news' element={<News />} />
 							<Route path='/music' element={<Music />} />
 							<Route path='/settings' element={<Settings />} />

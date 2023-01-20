@@ -7,7 +7,7 @@ type PropsType = {
 }
 type FormType = {
 	term: string
-	friend: string
+	friend: 'true' | 'false' | ''
 }
 type SetSubmittingType = {
 	setSubmitting: (isSubmitting: boolean) => void
@@ -41,4 +41,3 @@ export const UsersSearchForm: FC<PropsType> = memo(({ onFilterChanged }) => {
 		</div>
 	)
 })
-export default UsersSearchForm

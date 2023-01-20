@@ -2,7 +2,7 @@ import style from './Users.module.css'
 import userPhoto from '../../assets/images/computer-user-icon.png'
 import { NavLink } from 'react-router-dom'
 import { UserType } from '../../types/types'
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
 type PropsType = {
 	user: UserType
@@ -10,7 +10,7 @@ type PropsType = {
 	follow: (userId: number) => void
 	unfollow: (userId: number) => void
 }
-const User: FC<PropsType> = ({ user, followingInProgress, follow, unfollow }) => {
+export const User: FC<PropsType> = memo(({ user, followingInProgress, follow, unfollow }) => {
 	return (
 		<div className={style.user}>
 			<span>
@@ -55,6 +55,4 @@ const User: FC<PropsType> = ({ user, followingInProgress, follow, unfollow }) =>
 			</span>
 		</div>
 	)
-}
-
-export default User
+})

@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import { InjectedFormProps, reduxForm } from 'redux-form'
 import { required } from '../../utils/validators/validators'
 import { createField, GetStringKeys, Input } from '../common/FormsControls/FormsControls'
@@ -14,23 +14,25 @@ export type LoginFormValuesType = {
 	captcha: string | null
 }
 type LoginFormValuesTypeKeys = GetStringKeys<LoginFormValuesType>
-const LoginForm: FC<InjectedFormProps<LoginFormValuesType, PropsType> & PropsType> = ({ handleSubmit, error, captchaURL }) => {
-	return (
-		<form onSubmit={handleSubmit}>
-			{createField<LoginFormValuesTypeKeys>(Input, 'email', 'Email', [required])}
-			{createField<LoginFormValuesTypeKeys>(Input, 'password', 'Password', [required], { type: 'password' })}
-			{createField<LoginFormValuesTypeKeys>(Input, 'rememberMe', null, [], { type: 'checkbox' }, 'Remember me')}
-			{captchaURL && (
-				<>
-					<img src={captchaURL} alt='captcha-url' />
-					{createField<LoginFormValuesTypeKeys>(Input, 'captcha', 'Enter symbols from image', [required])}
-				</>
-			)}
-			{error && <div className={style.formSummaryError}>{error}</div>}
-			<div>
-				<button type='submit'>Login</button>
-			</div>
-		</form>
-	)
-}
+const LoginForm: FC<InjectedFormProps<LoginFormValuesType, PropsType> & PropsType> = memo(
+	({ handleSubmit, error, captchaURL }) => {
+		return (
+			<form onSubmit={handleSubmit}>
+				{createField<LoginFormValuesTypeKeys>(Input, 'email', 'Email', [required])}
+				{createField<LoginFormValuesTypeKeys>(Input, 'password', 'Password', [required], { type: 'password' })}
+				{createField<LoginFormValuesTypeKeys>(Input, 'rememberMe', null, [], { type: 'checkbox' }, 'Remember me')}
+				{captchaURL && (
+					<>
+						<img src={captchaURL} alt='captcha-url' />
+						{createField<LoginFormValuesTypeKeys>(Input, 'captcha', 'Enter symbols from image', [required])}
+					</>
+				)}
+				{error && <div className={style.formSummaryError}>{error}</div>}
+				<div>
+					<button type='submit'>Login</button>
+				</div>
+			</form>
+		)
+	}
+)
 export default reduxForm<LoginFormValuesType, PropsType>({ form: 'login' })(LoginForm)
