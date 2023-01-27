@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectCurrentUserId, selectCurrentUserLogin, selectIsAuth } from '../../redux/authSelectors'
 import { logout } from '../../redux/authReducer'
 import { FC } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 export const Header: FC = () => {
 	const isAuth = useSelector(selectIsAuth)
 	const login = useSelector(selectCurrentUserLogin)
 	const id = useSelector(selectCurrentUserId)
 	const userPhoto = `https://social-network.samuraijs.com/activecontent/images/users/${id}/user-small.jpg`
+	const navigate = useNavigate()
 	const dispatch = useDispatch()
 	const logoutCallback = () => {
 		dispatch(logout())
@@ -30,7 +31,12 @@ export const Header: FC = () => {
 					<>
 						{' '}
 						<Col span={1}>
-							<Avatar src={userPhoto} alt={login || ''} icon={<UserOutlined />} />
+							<Avatar
+								src={userPhoto}
+								alt={login || ''}
+								icon={<UserOutlined />}
+								onClick={() => navigate('/profile')}
+							/>
 						</Col>
 						<Col span={3} style={{ color: 'white' }}>
 							{login || ''}
