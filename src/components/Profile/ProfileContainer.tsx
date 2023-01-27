@@ -11,7 +11,7 @@ import { withRouter } from '../../hocs/withRouter'
 type MapPropsType = ReturnType<typeof mapStateToProps>
 type DispatchPropsType = {
 	router: any
-	profile: any
+	profile: ProfileType | null
 	getUserProfile: (userId: number) => void
 	getUserStatus: (userId: number) => void
 	getUpdateStatus: (status: string) => void

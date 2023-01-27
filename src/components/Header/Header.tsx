@@ -1,32 +1,59 @@
-import { NavLink } from 'react-router-dom'
-import style from './Header.module.css'
-import hotimsNetwork from './../../assets/images/hotims-network.jpg'
+import { Avatar, Button, Col, Layout, Menu, Row } from 'antd'
+import { UserOutlined } from '@ant-design/icons'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectCurrentUserId, selectCurrentUserLogin, selectIsAuth } from '../../redux/authSelectors'
+import { logout } from '../../redux/authReducer'
 import { FC } from 'react'
+import { NavLink } from 'react-router-dom'
 
-export type MapPropsType = {
-	isAuth: boolean
-	login: string | null
-}
-export type DispatchPropsType = {
-	logout: () => void
-}
-const Header: FC<MapPropsType & DispatchPropsType> = (props) => {
+export const Header: FC = () => {
+	const isAuth = useSelector(selectIsAuth)
+	const login = useSelector(selectCurrentUserLogin)
+	const id = useSelector(selectCurrentUserId)
+	const userPhoto = `https://social-network.samuraijs.com/activecontent/images/users/${id}/user-small.jpg`
+	const dispatch = useDispatch()
+	const logoutCallback = () => {
+		dispatch(logout())
+	}
+	const { Header } = Layout
 	return (
-		<header className={style.header}>
-			<img src={hotimsNetwork} alt='Hotims Network' />
-			<div className={style.login_block}>
-				{props.isAuth ? (
-					<div>
-						{props.login}{' '}
-						<button type='submit' onClick={props.logout}>
-							Logout
-						</button>
-					</div>
+		<Header className='header'>
+			<Row>
+				<Col span={18}>
+					<Menu theme='dark' mode='horizontal' defaultSelectedKeys={['2']}>
+						<Menu.Item key='1'>
+							<NavLink to='/users'>Find Developers</NavLink>
+						</Menu.Item>
+					</Menu>
+				</Col>
+				{isAuth ? (
+					<>
+						{' '}
+						<Col span={1}>
+							{userPhoto ? (
+								<Avatar
+									src={`https://social-network.samuraijs.com/activecontent/images/users/${id}/user-small.jpg`}
+									alt={login || ''}
+								/>
+							) : (
+								<Avatar alt={login || ''} style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} />
+							)}
+						</Col>
+						<Col span={3} style={{ color: 'white' }}>
+							{login || ''}
+						</Col>
+						<Col span={2}>
+							<Button onClick={logoutCallback}>Log out</Button>
+						</Col>
+					</>
 				) : (
-					<NavLink to={'/login'}>Login</NavLink>
+					<Col span={6}>
+						<Button>
+							<NavLink to={'/login'}>Login</NavLink>
+						</Button>
+					</Col>
 				)}
-			</div>
-		</header>
+			</Row>
+		</Header>
 	)
 }
-export default Header

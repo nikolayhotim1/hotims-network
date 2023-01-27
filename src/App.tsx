@@ -1,19 +1,21 @@
 import { Component, FC, lazy, Suspense } from 'react'
 import { Route, Routes, Navigate } from 'react-router'
 import './App.css'
-import Navbar from './components/Navbar/Navbar'
-import News from './components/News/News'
-import Music from './components/Music/Music'
-import Settings from './components/Settings/Settings'
-import HeaderContainer from './components/Header/HeaderContainer'
 import { connect } from 'react-redux'
 import { initializeApp } from './redux/appReducer'
 import Preloader from './components/common/Preloader/Preloader'
 import store, { AppStateType } from './redux/reduxStore'
 import { HashRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
+import 'antd/dist/reset.css'
+import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons'
+import { Breadcrumb, Layout, Menu } from 'antd'
+import { Header } from './components/Header/Header'
+import { NavLink } from 'react-router-dom'
+import ProfileContainer from './components/Profile/ProfileContainer'
 
-const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer'))
+const { SubMenu } = Menu
+const { Content, Footer, Sider } = Layout
 const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer'))
 const UsersPage = lazy(() => import('./components/Users/UsersPage').then((module) => ({ default: module.UsersPage })))
 const LoginPage = lazy(() => import('./components/Login/LoginPage').then((module) => ({ default: module.LoginPage })))
@@ -35,27 +37,52 @@ class App extends Component<MapPropsType & DispatchPropsType> {
 	render() {
 		if (!this.props.initialized) return <Preloader />
 		return (
-			<div className='app-wrapper'>
-				<HeaderContainer />
-				<Navbar />
-				<div className='app-wrapper-content'>
-					<Suspense fallback={<Preloader />}>
-						<Routes>
-							<Route path='/profile' element={<ProfileContainer />}>
-								<Route path='/profile/:userId' element={<ProfileContainer />} />
-							</Route>
-							<Route path='/dialogs' element={<DialogsContainer />} />
-							<Route path='/users' element={<UsersPage pageTitle={'Samurai'} />} />
-							<Route path='/login' element={<LoginPage />} />
-							<Route path='/news' element={<News />} />
-							<Route path='/music' element={<Music />} />
-							<Route path='/settings' element={<Settings />} />
-							<Route path='/' element={<Navigate to='/profile' />} />
-							<Route path='/*' element={<div className='not-found'>404 NOT FOUND</div>} />
-						</Routes>
-					</Suspense>
-				</div>
-			</div>
+			<Layout>
+				<Header />
+				<Content style={{ padding: '0 50px' }}>
+					<Breadcrumb style={{ margin: '16px 0' }}>
+						<Breadcrumb.Item>Hotims Network</Breadcrumb.Item>
+					</Breadcrumb>
+					<Layout className='site-layout-background' style={{ padding: '24px 0' }}>
+						<Sider className='site-layout-background' width={200}>
+							<Menu mode='inline' style={{ height: '100%' }}>
+								<SubMenu key='sub1' icon={<UserOutlined />} title='Profile'>
+									<Menu.Item key='1'>
+										{' '}
+										<NavLink to='/profile'>My Page</NavLink>
+									</Menu.Item>
+								</SubMenu>
+								<SubMenu key='sub2' icon={<NotificationOutlined />} title='Dialogs'>
+									<Menu.Item key='2'>
+										{' '}
+										<NavLink to='/dialogs'>My Messages</NavLink>
+									</Menu.Item>
+								</SubMenu>
+								<SubMenu key='sub3' icon={<LaptopOutlined />} title='Users'>
+									<Menu.Item key='3'>
+										<NavLink to='/users'>Find Developers</NavLink>
+									</Menu.Item>
+								</SubMenu>
+							</Menu>
+						</Sider>
+						<Content style={{ padding: '0 24px', minHeight: 280 }}>
+							<Suspense fallback={<Preloader />}>
+								<Routes>
+									<Route path='/profile' element={<ProfileContainer />}>
+										<Route path='/profile/:userId' element={<ProfileContainer />} />\{' '}
+									</Route>
+									<Route path='/dialogs' element={<DialogsContainer />} />
+									<Route path='/users' element={<UsersPage pageTitle={'Find Developers'} />} />
+									<Route path='/login' element={<LoginPage />} />
+									<Route path='/' element={<Navigate to='/profile' />} />
+									<Route path='/*' element={<div className='not-found'>404 NOT FOUND</div>} />
+								</Routes>
+							</Suspense>
+						</Content>
+					</Layout>
+				</Content>
+				<Footer style={{ textAlign: 'center' }}>Hotims Network ©2023 Created by Nikolay Hotim</Footer>
+			</Layout>
 		)
 	}
 }
