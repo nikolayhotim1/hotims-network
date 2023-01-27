@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/hotims-network/static/css/main.aee5602a.chunk.css",
-    "main.js": "/hotims-network/static/js/main.1dbd936b.chunk.js",
-    "main.js.map": "/hotims-network/static/js/main.1dbd936b.chunk.js.map",
+    "main.js": "/hotims-network/static/js/main.6b17da0b.chunk.js",
+    "main.js.map": "/hotims-network/static/js/main.6b17da0b.chunk.js.map",
     "runtime-main.js": "/hotims-network/static/js/runtime-main.88d361a3.js",
     "runtime-main.js.map": "/hotims-network/static/js/runtime-main.88d361a3.js.map",
     "static/css/2.a7f07a6b.chunk.css": "/hotims-network/static/css/2.a7f07a6b.chunk.css",
@@ -33,6 +33,6 @@
     "static/css/2.a7f07a6b.chunk.css",
     "static/js/2.d8db2be0.chunk.js",
     "static/css/main.aee5602a.chunk.css",
-    "static/js/main.1dbd936b.chunk.js"
+    "static/js/main.6b17da0b.chunk.js"
   ]
 }
