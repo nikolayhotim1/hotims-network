@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/hotims-network/static/css/main.aee5602a.chunk.css",
-    "main.js": "/hotims-network/static/js/main.6b17da0b.chunk.js",
-    "main.js.map": "/hotims-network/static/js/main.6b17da0b.chunk.js.map",
+    "main.js": "/hotims-network/static/js/main.484bc572.chunk.js",
+    "main.js.map": "/hotims-network/static/js/main.484bc572.chunk.js.map",
     "runtime-main.js": "/hotims-network/static/js/runtime-main.88d361a3.js",
     "runtime-main.js.map": "/hotims-network/static/js/runtime-main.88d361a3.js.map",
     "static/css/2.a7f07a6b.chunk.css": "/hotims-network/static/css/2.a7f07a6b.chunk.css",
-    "static/js/2.d8db2be0.chunk.js": "/hotims-network/static/js/2.d8db2be0.chunk.js",
-    "static/js/2.d8db2be0.chunk.js.map": "/hotims-network/static/js/2.d8db2be0.chunk.js.map",
+    "static/js/2.d2e98667.chunk.js": "/hotims-network/static/js/2.d2e98667.chunk.js",
+    "static/js/2.d2e98667.chunk.js.map": "/hotims-network/static/js/2.d2e98667.chunk.js.map",
     "static/js/3.84a3aa9a.chunk.js": "/hotims-network/static/js/3.84a3aa9a.chunk.js",
     "static/js/3.84a3aa9a.chunk.js.map": "/hotims-network/static/js/3.84a3aa9a.chunk.js.map",
     "static/css/4.2114a712.chunk.css": "/hotims-network/static/css/4.2114a712.chunk.css",
@@ -23,7 +23,7 @@
     "static/css/4.2114a712.chunk.css.map": "/hotims-network/static/css/4.2114a712.chunk.css.map",
     "static/css/5.d766f99e.chunk.css.map": "/hotims-network/static/css/5.d766f99e.chunk.css.map",
     "static/css/main.aee5602a.chunk.css.map": "/hotims-network/static/css/main.aee5602a.chunk.css.map",
-    "static/js/2.d8db2be0.chunk.js.LICENSE.txt": "/hotims-network/static/js/2.d8db2be0.chunk.js.LICENSE.txt",
+    "static/js/2.d2e98667.chunk.js.LICENSE.txt": "/hotims-network/static/js/2.d2e98667.chunk.js.LICENSE.txt",
     "static/media/preloader.86e365cf.svg": "/hotims-network/static/media/preloader.86e365cf.svg",
     "static/media/the-codefather-2.94b97c11.png": "/hotims-network/static/media/the-codefather-2.94b97c11.png",
     "static/media/the-codefather.46d5a7a9.png": "/hotims-network/static/media/the-codefather.46d5a7a9.png"
@@ -31,8 +31,8 @@
   "entrypoints": [
     "static/js/runtime-main.88d361a3.js",
     "static/css/2.a7f07a6b.chunk.css",
-    "static/js/2.d8db2be0.chunk.js",
+    "static/js/2.d2e98667.chunk.js",
     "static/css/main.aee5602a.chunk.css",
-    "static/js/main.6b17da0b.chunk.js"
+    "static/js/main.484bc572.chunk.js"
   ]
 }
