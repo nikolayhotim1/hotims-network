@@ -30,14 +30,7 @@ export const Header: FC = () => {
 					<>
 						{' '}
 						<Col span={1}>
-							{userPhoto ? (
-								<Avatar
-									src={`https://social-network.samuraijs.com/activecontent/images/users/${id}/user-small.jpg`}
-									alt={login || ''}
-								/>
-							) : (
-								<Avatar alt={login || ''} style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} />
-							)}
+							<Avatar src={userPhoto} alt={login || ''} icon={<UserOutlined />} />
 						</Col>
 						<Col span={3} style={{ color: 'white' }}>
 							{login || ''}
