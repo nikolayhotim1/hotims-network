@@ -23,13 +23,12 @@ export const Header: FC = () => {
 				<Col span={18}>
 					<Menu theme='dark' mode='horizontal' defaultSelectedKeys={['2']}>
 						<Menu.Item key='1'>
-							<NavLink to='/users'>Find Developers</NavLink>
+							<NavLink to='/users'>Developers</NavLink>
 						</Menu.Item>
 					</Menu>
 				</Col>
 				{isAuth ? (
 					<>
-						{' '}
 						<Col span={1}>
 							<Avatar
 								src={userPhoto}

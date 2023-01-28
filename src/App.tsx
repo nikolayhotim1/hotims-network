@@ -16,9 +16,10 @@ import ProfileContainer from './components/Profile/ProfileContainer'
 
 const { SubMenu } = Menu
 const { Content, Footer, Sider } = Layout
+const ChatPage = lazy(() => import('./pages/ChatPage/ChatPage').then(module => ({ default: module.ChatPage })))
 const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer'))
-const UsersPage = lazy(() => import('./components/Users/UsersPage').then((module) => ({ default: module.UsersPage })))
-const LoginPage = lazy(() => import('./components/Login/LoginPage').then((module) => ({ default: module.LoginPage })))
+const UsersPage = lazy(() => import('./components/Users/UsersPage').then(module => ({ default: module.UsersPage })))
+const LoginPage = lazy(() => import('./components/Login/LoginPage').then(module => ({ default: module.LoginPage })))
 type MapPropsType = ReturnType<typeof mapStateToProps>
 type DispatchPropsType = {
 	initializeApp: () => void
@@ -41,26 +42,38 @@ class App extends Component<MapPropsType & DispatchPropsType> {
 				<Header />
 				<Content style={{ padding: '0 50px' }}>
 					<Breadcrumb style={{ margin: '16px 0' }}>
-						<Breadcrumb.Item>Hotims Network</Breadcrumb.Item>
+						<Breadcrumb.Item>
+							<NavLink to='/profile'>My Page</NavLink>
+						</Breadcrumb.Item>
+						<Breadcrumb.Item>
+							<NavLink to='/chat'>Chat</NavLink>
+						</Breadcrumb.Item>
+						<Breadcrumb.Item>
+							<NavLink to='/dialogs'>Messages</NavLink>
+						</Breadcrumb.Item>
+						<Breadcrumb.Item>
+							<NavLink to='/users'>Developers</NavLink>
+						</Breadcrumb.Item>
 					</Breadcrumb>
 					<Layout className='site-layout-background' style={{ padding: '24px 0' }}>
 						<Sider className='site-layout-background' width={200}>
 							<Menu mode='inline' style={{ height: '100%' }}>
 								<SubMenu key='sub1' icon={<UserOutlined />} title='Profile'>
 									<Menu.Item key='1'>
-										{' '}
 										<NavLink to='/profile'>My Page</NavLink>
 									</Menu.Item>
 								</SubMenu>
 								<SubMenu key='sub2' icon={<NotificationOutlined />} title='Dialogs'>
 									<Menu.Item key='2'>
-										{' '}
-										<NavLink to='/dialogs'>My Messages</NavLink>
+										<NavLink to='/chat'>Chat</NavLink>
+									</Menu.Item>
+									<Menu.Item key='3'>
+										<NavLink to='/dialogs'>Messages</NavLink>
 									</Menu.Item>
 								</SubMenu>
 								<SubMenu key='sub3' icon={<LaptopOutlined />} title='Users'>
-									<Menu.Item key='3'>
-										<NavLink to='/users'>Find Developers</NavLink>
+									<Menu.Item key='4'>
+										<NavLink to='/users'>Developers</NavLink>
 									</Menu.Item>
 								</SubMenu>
 							</Menu>
@@ -69,8 +82,9 @@ class App extends Component<MapPropsType & DispatchPropsType> {
 							<Suspense fallback={<Preloader />}>
 								<Routes>
 									<Route path='/profile' element={<ProfileContainer />}>
-										<Route path='/profile/:userId' element={<ProfileContainer />} />\{' '}
+										<Route path='/profile/:userId' element={<ProfileContainer />} />
 									</Route>
+									<Route path='/chat' element={<ChatPage />} />
 									<Route path='/dialogs' element={<DialogsContainer />} />
 									<Route path='/users' element={<UsersPage pageTitle={'Find Developers'} />} />
 									<Route path='/login' element={<LoginPage />} />
