@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import style from './ChatPage.module.css'
 
-const ws = new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx')
 export type ChatMessageType = {
 	message: string
 	photo: string
@@ -18,15 +17,18 @@ const Message: FC<{ message: ChatMessageType }> = ({ message }) => {
 		</div>
 	)
 }
-const Messages: FC = () => {
+const Messages: FC<{ wsChannel: WebSocket | null }> = ({ wsChannel }) => {
 	const [messages, setMessages] = useState<ChatMessageType[]>([])
 	useEffect(() => {
-		ws.addEventListener('message', e => {
+		const messageHandler = (e: MessageEvent<any>): void => {
 			const newMessages = JSON.parse(e.data)
 			setMessages(prevMessages => [...prevMessages, ...newMessages])
-		})
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
+		}
+		wsChannel?.addEventListener('message', messageHandler)
+		return () => {
+			wsChannel?.removeEventListener('message', messageHandler)
+		}
+	}, [wsChannel])
 	return (
 		<div className={style.messages}>
 			{messages.map((m, i) => (
@@ -35,21 +37,29 @@ const Messages: FC = () => {
 		</div>
 	)
 }
-const AddMessageForm: FC = () => {
+const AddMessageForm: FC<{ wsChannel: WebSocket | null }> = ({ wsChannel }) => {
 	const [message, setMessage] = useState('')
+	const [readyStatus, setReadyStatus] = useState<'pending' | 'ready'>('pending')
 	const sendMessage = () => {
-		if (!message) {
-			return
-		}
-		ws.send(message)
+		if (!message) return
+		wsChannel?.send(message)
 		setMessage('')
 	}
+	useEffect(() => {
+		const openHandler = () => {
+			setReadyStatus('ready')
+		}
+		wsChannel?.addEventListener('open', openHandler)
+		return () => {
+			wsChannel?.removeEventListener('open', openHandler)
+		}
+	}, [wsChannel])
 	return (
 		<div>
 			<label>
 				<textarea onChange={e => setMessage(e.currentTarget.value)} value={message}></textarea>
 				<br />
-				<button type='submit' onClick={sendMessage}>
+				<button disabled={!wsChannel || readyStatus !== 'ready'} type='submit' onClick={sendMessage}>
 					Send
 				</button>
 			</label>
@@ -57,10 +67,29 @@ const AddMessageForm: FC = () => {
 	)
 }
 const Chat: FC = () => {
+	const [wsChannel, setWsChannel] = useState<WebSocket | null>(null)
+	useEffect(() => {
+		let ws: WebSocket
+		const closeHandler = () => {
+			setTimeout(createChannel, 3000)
+		}
+		const createChannel = () => {
+			ws?.removeEventListener('close', closeHandler)
+			ws?.close()
+			ws = new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx')
+			ws.addEventListener('close', closeHandler)
+			setWsChannel(ws)
+		}
+		createChannel()
+		return () => {
+			ws.removeEventListener('close', closeHandler)
+			ws.close()
+		}
+	}, [])
 	return (
 		<div>
-			<Messages />
-			<AddMessageForm />
+			<Messages wsChannel={wsChannel} />
+			<AddMessageForm wsChannel={wsChannel} />
 		</div>
 	)
 }
