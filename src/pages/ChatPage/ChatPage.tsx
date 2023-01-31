@@ -40,6 +40,13 @@ const Messages: FC = () => {
 		}
 	}
 	useEffect(() => {
+		if (isAutoScroll) {
+			setTimeout(() => {
+				messagesAnchorRef.current?.scrollIntoView({ behavior: 'smooth' })
+			}, 500)
+		}
+	}, [isAutoScroll, messages])
+	useEffect(() => {
 		messagesAnchorRef.current?.scrollIntoView(true)
 	}, [messages])
 	return (
