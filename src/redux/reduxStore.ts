@@ -7,9 +7,11 @@ import usersReducer from './usersReducer'
 import thunkMiddleware, { ThunkAction } from 'redux-thunk'
 import { reducer as formReducer } from 'redux-form'
 import appReducer from './appReducer'
+import chatReduser from './chatReducer'
 
 const rootReducer = combineReducers({
 	profilePage: profileReducer,
+	chat: chatReduser,
 	dialogsPage: dialogsReducer,
 	sidebar: sidebarReducer,
 	usersPage: usersReducer,
