@@ -1,4 +1,3 @@
-import style from './Profile.module.css'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
 import MyPostsContainer from './MyPosts/MyPostsContainer'
 import { FC } from 'react'
@@ -12,9 +11,9 @@ type PropsType = {
 	savePhoto: (file: File) => void
 	saveProfile: (profile: ProfileType) => Promise<any>
 }
-const Profile: FC<PropsType> = (props) => {
+const Profile: FC<PropsType> = props => {
 	return (
-		<div className={style.profile_wrapper}>
+		<div>
 			<ProfileInfo
 				isOwner={props.isOwner}
 				profile={props.profile}

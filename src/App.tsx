@@ -1,6 +1,5 @@
 import { Component, FC, lazy, Suspense } from 'react'
 import { Route, Routes, Navigate } from 'react-router'
-import './App.css'
 import { connect } from 'react-redux'
 import { initializeApp } from './redux/appReducer'
 import Preloader from './components/common/Preloader/Preloader'
