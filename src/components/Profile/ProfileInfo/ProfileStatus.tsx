@@ -35,7 +35,7 @@ const ProfileStatus: FC<PropsType> = props => {
 			{editMode && (
 				<div>
 					<input
-						placeholder={props.status}
+						placeholder='Tell us about yourself...'
 						onChange={onStatusChange}
 						autoFocus={true}
 						onBlur={deactivateEditMode}
