@@ -12,7 +12,6 @@ import { Breadcrumb, Layout, Menu } from 'antd'
 import { Header } from './components/Header/Header'
 import { NavLink } from 'react-router-dom'
 import ProfileContainer from './components/Profile/ProfileContainer'
-
 const { SubMenu } = Menu
 const { Content, Footer, Sider } = Layout
 const ChatPage = lazy(() => import('./pages/ChatPage/ChatPage').then(module => ({ default: module.ChatPage })))

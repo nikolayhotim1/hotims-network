@@ -15,7 +15,6 @@ import {
 } from '../../redux/usersSelectors'
 import { useLocation, useNavigate } from 'react-router'
 import * as queryString from 'querystring'
-
 export const Users: FC = memo(() => {
 	const totalUsersCount = useSelector(getTotalUsersCount)
 	const currentPage = useSelector(getCurrentPage)
@@ -84,7 +83,7 @@ export const Users: FC = memo(() => {
 				currentPage={currentPage}
 				onPageChanged={onPageChanged}
 			/>
-			{users.map((u) => (
+			{users.map(u => (
 				<User key={u.id} user={u} followingInProgress={followingInProgress} follow={followUser} unfollow={unfollowUser} />
 			))}
 		</div>

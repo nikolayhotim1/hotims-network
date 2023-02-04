@@ -5,7 +5,6 @@ import { withAuthRedirect } from '../../hocs/withAuthRedirect'
 import { actions } from '../../redux/dialogsReducer'
 import { AppStateType } from '../../redux/reduxStore'
 import Dialogs from './Dialogs'
-
 const mapStateToProps = (state: AppStateType) => {
 	return {
 		dialogsPage: state.dialogsPage

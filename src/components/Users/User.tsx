@@ -3,7 +3,6 @@ import userPhoto from '../../assets/images/computer-user-icon.png'
 import { NavLink } from 'react-router-dom'
 import { UserType } from '../../types/types'
 import { FC, memo } from 'react'
-
 type PropsType = {
 	user: UserType
 	followingInProgress: Array<number>
@@ -19,7 +18,7 @@ export const User: FC<PropsType> = memo(({ user, followingInProgress, follow, un
 						<img
 							src={user.photos.small !== null ? user.photos.small : userPhoto}
 							alt='My super avatar'
-							className={style.userPhoto}
+							className={style.user_photo}
 						/>
 					</NavLink>
 				</div>
@@ -27,7 +26,7 @@ export const User: FC<PropsType> = memo(({ user, followingInProgress, follow, un
 					{user.followed ? (
 						<button
 							type='submit'
-							disabled={followingInProgress.some((id) => id === user.id)}
+							disabled={followingInProgress.some(id => id === user.id)}
 							onClick={() => unfollow(user.id)}
 						>
 							Unfollow
@@ -35,7 +34,7 @@ export const User: FC<PropsType> = memo(({ user, followingInProgress, follow, un
 					) : (
 						<button
 							type='submit'
-							disabled={followingInProgress.some((id) => id === user.id)}
+							disabled={followingInProgress.some(id => id === user.id)}
 							onClick={() => follow(user.id)}
 						>
 							Follow
@@ -47,10 +46,6 @@ export const User: FC<PropsType> = memo(({ user, followingInProgress, follow, un
 				<span>
 					<div>{user.name}</div>
 					<div>{user.status}</div>
-				</span>
-				<span>
-					<div>{'user.location.city'}</div>
-					<div>{'user.location.country'}</div>
 				</span>
 			</span>
 		</div>

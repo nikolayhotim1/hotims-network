@@ -2,7 +2,6 @@ import ProfileInfo from './ProfileInfo/ProfileInfo'
 import MyPostsContainer from './MyPosts/MyPostsContainer'
 import { FC } from 'react'
 import { ProfileType } from '../../types/types'
-
 type PropsType = {
 	isOwner: boolean
 	profile: ProfileType | null

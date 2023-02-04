@@ -4,15 +4,14 @@ import DialogItem from './DialogItem/DialogItem'
 import Message from './Message/Message'
 import DialogsForm, { NewMessageFormValuesType } from './DialogsForm'
 import { InitialStateType } from '../../redux/dialogsReducer'
-
 type PropsType = {
 	dialogsPage: InitialStateType
 	sendMessage: (newMessageText: string | null) => void
 }
-const Dialogs: FC<PropsType> = (props) => {
+const Dialogs: FC<PropsType> = props => {
 	const state = props.dialogsPage
-	const dialogsElements = state.dialogs.map((d) => <DialogItem name={d.name} key={d.id} id={d.id} />)
-	const messagesElements = state.messages.map((m) => <Message message={m.message} key={m.id} />)
+	const dialogsElements = state.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id} />)
+	const messagesElements = state.messages.map(m => <Message message={m.message} key={m.id} />)
 	const addNewMessage = (values: NewMessageFormValuesType) => {
 		props.sendMessage(values.newMessageText)
 	}

@@ -4,7 +4,6 @@ import Preloader from '../common/Preloader/Preloader'
 import { getIsFetching } from '../../redux/usersSelectors'
 import { FC, memo } from 'react'
 import { Users } from './Users'
-
 type UserPagePropsType = {
 	pageTitle: string
 }

@@ -3,7 +3,6 @@ import { Dispatch } from 'redux'
 import { FormAction } from 'redux-form/lib/actions'
 import { chatAPI, ChatMessageAPIType, StatusType } from '../api/chatAPI'
 import { v1 } from 'uuid'
-
 type ChatMessageType = ChatMessageAPIType & { id: string }
 const initialState = {
 	messages: [] as ChatMessageType[],

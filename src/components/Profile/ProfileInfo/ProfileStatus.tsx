@@ -1,12 +1,11 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react'
-import style from './ProfileStatusWithHooks.module.css'
-
+import style from './ProfileStatus.module.css'
 type PropsType = {
 	status: string
 	isOwner: boolean
 	getUpdateStatus: (status: string) => void
 }
-const ProfileStatusWithHooks: FC<PropsType> = (props) => {
+const ProfileStatus: FC<PropsType> = props => {
 	const [editMode, setEditMode] = useState(false)
 	const [status, setStatus] = useState(props.status)
 	useEffect(() => {
@@ -26,13 +25,17 @@ const ProfileStatusWithHooks: FC<PropsType> = (props) => {
 		<div>
 			{!editMode && (
 				<div className={style.status} onClick={activateEditMode}>
-					<i>{props.status || 'My status will be here'}</i>
+					{props.isOwner ? (
+						<i className={style.owner_status}>{props.status || 'Tell us about yourself...'}</i>
+					) : (
+						<i>{props.status || ''}</i>
+					)}
 				</div>
 			)}
 			{editMode && (
 				<div>
 					<input
-						placeholder='My status'
+						placeholder={props.status}
 						onChange={onStatusChange}
 						autoFocus={true}
 						onBlur={deactivateEditMode}
@@ -43,4 +46,4 @@ const ProfileStatusWithHooks: FC<PropsType> = (props) => {
 		</div>
 	)
 }
-export default ProfileStatusWithHooks
+export default ProfileStatus

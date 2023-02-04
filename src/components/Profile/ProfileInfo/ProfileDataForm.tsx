@@ -4,7 +4,6 @@ import { createField, GetStringKeys, Input, Textarea } from '../../common/FormsC
 import style from './ProfileInfo.module.css'
 import style2 from '../../common/FormsControls/FormsControls.module.css'
 import { ProfileType } from '../../../types/types'
-
 type PropsType = {
 	profile: ProfileType
 }
@@ -39,7 +38,7 @@ const ProfileDataForm: FC<InjectedFormProps<ProfileType, PropsType> & PropsType>
 			</div>
 			<div className={style.contacts}>
 				<h2>My Contacts:</h2>
-				{Object.keys(profile.contacts).map((key) => {
+				{Object.keys(profile.contacts).map(key => {
 					return (
 						<div key={key}>
 							<b>

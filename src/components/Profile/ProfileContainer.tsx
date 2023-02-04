@@ -7,7 +7,6 @@ import { AppStateType } from '../../redux/reduxStore'
 import { ProfileType } from '../../types/types'
 import { Component, ComponentType } from 'react'
 import { withRouter } from '../../hocs/withRouter'
-
 type MapPropsType = ReturnType<typeof mapStateToProps>
 type DispatchPropsType = {
 	router: any

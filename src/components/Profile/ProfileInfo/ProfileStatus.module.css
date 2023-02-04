@@ -1,5 +1,7 @@
 .status {
-    cursor: pointer;
-    color: black;
     background-color: lightblue;
+}
+
+.owner_status {
+    cursor: pointer;
 }

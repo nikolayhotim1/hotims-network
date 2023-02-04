@@ -1,5 +1,4 @@
 import { instance, GetItemsType, APIResponseType } from './api'
-
 export const usersAPI = {
 	async getNewFollowedUser(userId: number) {
 		const response = await instance.post<APIResponseType>(`follow/${userId}`, {})

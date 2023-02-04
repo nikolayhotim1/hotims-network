@@ -5,7 +5,6 @@ import { selectCurrentUserId, selectCurrentUserLogin, selectIsAuth } from '../..
 import { logout } from '../../redux/authReducer'
 import { FC } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
-
 export const Header: FC = () => {
 	const isAuth = useSelector(selectIsAuth)
 	const login = useSelector(selectCurrentUserLogin)

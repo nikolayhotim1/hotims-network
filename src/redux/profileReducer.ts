@@ -2,7 +2,6 @@ import { BaseThunkType, InferActionsTypes } from './reduxStore'
 import { PhotosType, PostType, ProfileType } from '../types/types'
 import { FormAction, stopSubmit } from 'redux-form'
 import { profileAPI } from '../api/profileAPI'
-
 const initialState = {
 	posts: [
 		{ id: 1, message: "It's my first post.", likesCount: 15 },
@@ -26,7 +25,7 @@ const profileReducer = (state = initialState, action: ActionsTypes): InitialStat
 			return { ...state, posts: [...state.posts, { id: 3, message: action.newPostText, likesCount: 0 }] }
 		}
 		case 'hotims-network/profileReducer/DELETE_POST': {
-			return { ...state, posts: state.posts.filter((p) => p.id !== action.postId) }
+			return { ...state, posts: state.posts.filter(p => p.id !== action.postId) }
 		}
 		case 'hotims-network/profileReducer/SET_USER_PROFILE': {
 			return { ...state, profile: action.profile }
@@ -43,19 +42,19 @@ const profileReducer = (state = initialState, action: ActionsTypes): InitialStat
 }
 type ThunkType = BaseThunkType<ActionsTypes | FormAction>
 export const getUserProfile = (userId: number): ThunkType => {
-	return async (dispatch) => {
+	return async dispatch => {
 		const data = await profileAPI.getUserProfile(userId)
 		dispatch(actions.setUserProfile(data))
 	}
 }
 export const getUserStatus = (userId: number): ThunkType => {
-	return async (dispatch) => {
+	return async dispatch => {
 		const data = await profileAPI.getUserStatus(userId)
 		dispatch(actions.setUserStatus(data))
 	}
 }
 export const getUpdateStatus = (status: string): ThunkType => {
-	return async (dispatch) => {
+	return async dispatch => {
 		try {
 			const data = await profileAPI.getUpdateStatus(status)
 			if (data.resultCode === 0) {
@@ -67,7 +66,7 @@ export const getUpdateStatus = (status: string): ThunkType => {
 	}
 }
 export const savePhoto = (file: File): ThunkType => {
-	return async (dispatch) => {
+	return async dispatch => {
 		const data = await profileAPI.savePhoto(file)
 		if (data.resultCode === 0) {
 			dispatch(actions.savePhotoSuccess(data.data.photos))

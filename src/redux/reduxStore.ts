@@ -2,18 +2,15 @@ import { Action, applyMiddleware, combineReducers, compose, createStore } from '
 import authReducer from './authReducer'
 import dialogsReducer from './dialogsReducer'
 import profileReducer from './profileReducer'
-import sidebarReducer from './sidebarReducer'
 import usersReducer from './usersReducer'
 import thunkMiddleware, { ThunkAction } from 'redux-thunk'
 import { reducer as formReducer } from 'redux-form'
 import appReducer from './appReducer'
 import chatReduser from './chatReducer'
-
 const rootReducer = combineReducers({
 	profilePage: profileReducer,
 	chat: chatReduser,
 	dialogsPage: dialogsReducer,
-	sidebar: sidebarReducer,
 	usersPage: usersReducer,
 	auth: authReducer,
 	form: formReducer,

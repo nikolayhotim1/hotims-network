@@ -3,15 +3,14 @@ import Post from './Post/Post'
 import { FC } from 'react'
 import { PostType } from '../../../types/types'
 import MyPostsForm, { MyPostsFormValuesType } from './MyPostsForm'
-
 export type MapPropsType = {
 	posts: Array<PostType>
 }
 export type DispatchPropsType = {
 	addPost: (newPostText: string) => void
 }
-const MyPosts: FC<MapPropsType & DispatchPropsType> = (props) => {
-	const postsElements = props.posts.map((p) => <Post key={p.id} message={p.message} likesCount={p.likesCount} />)
+const MyPosts: FC<MapPropsType & DispatchPropsType> = props => {
+	const postsElements = props.posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount} />)
 	const onAddPost = (values: MyPostsFormValuesType) => {
 		props.addPost(values.newPostText)
 	}

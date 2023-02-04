@@ -1,5 +1,4 @@
 import usersReducer, { actions, InitialStateType } from './usersReducer'
-
 let state: InitialStateType
 beforeEach(() => {
 	state = {
@@ -12,6 +11,10 @@ beforeEach(() => {
 		pageSize: 10,
 		totalUsersCount: 0,
 		currentPage: 1,
+		filter: {
+			term: '',
+			friend: null
+		},
 		isFetching: false,
 		followingInProgress: []
 	}

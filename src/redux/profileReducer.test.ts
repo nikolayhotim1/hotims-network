@@ -1,5 +1,4 @@
 import profileReducer, { actions } from './profileReducer'
-
 const state = {
 	posts: [
 		{ id: 1, message: "It's my first post.", likesCount: 15 },

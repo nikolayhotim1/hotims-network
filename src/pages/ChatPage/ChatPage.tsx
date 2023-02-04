@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { sendMessage, startMessagesListening, stopMessagesListening } from '../../redux/chatReducer'
 import { AppStateType } from '../../redux/reduxStore'
 import style from './ChatPage.module.css'
-
 export const ChatPage: FC = () => {
 	return <Chat />
 }

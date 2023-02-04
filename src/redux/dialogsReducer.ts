@@ -1,6 +1,5 @@
 import { DialogType, MessageType } from './../types/types'
 import { InferActionsTypes } from './reduxStore'
-
 const initialState = {
 	dialogs: [
 		{ id: 1, name: 'Andrey' },

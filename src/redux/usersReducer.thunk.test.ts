@@ -1,7 +1,6 @@
 import { APIResponseType, ResultCodesEnum } from '../api/api'
 import { usersAPI } from './../api/usersAPI'
 import { actions, follow, unfollow } from './usersReducer'
-
 jest.mock('./../api/usersAPI')
 const usersAPIMock = usersAPI as jest.Mocked<typeof usersAPI>
 const result: APIResponseType = {

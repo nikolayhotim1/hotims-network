@@ -1,7 +1,6 @@
 import { FC, useState } from 'react'
 import style from './Paginator.module.css'
 import cn from 'classnames'
-
 type PropsType = {
 	totalItemsCount: number
 	pageSize: number
@@ -23,6 +22,7 @@ const Paginator: FC<PropsType> = ({ totalItemsCount, pageSize, currentPage = 1, 
 		<div className={style.paginator}>
 			{portionNumber > 1 && (
 				<button
+					type='submit'
 					onClick={() => {
 						setPortionNumber(portionNumber - 1)
 					}}
@@ -31,8 +31,8 @@ const Paginator: FC<PropsType> = ({ totalItemsCount, pageSize, currentPage = 1, 
 				</button>
 			)}
 			{pages
-				.filter((p) => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
-				.map((p) => {
+				.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
+				.map(p => {
 					return (
 						<span
 							className={cn({ [style.selectedPage]: currentPage === p }, style.pageNumber)}
@@ -47,6 +47,7 @@ const Paginator: FC<PropsType> = ({ totalItemsCount, pageSize, currentPage = 1, 
 				})}
 			{portionCount > portionNumber && (
 				<button
+					type='submit'
 					onClick={() => {
 						setPortionNumber(portionNumber + 1)
 					}}

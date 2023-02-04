@@ -1,7 +1,6 @@
 import { PhotosType } from './../types/types'
 import { ProfileType } from '../types/types'
 import { instance, APIResponseType } from './api'
-
 type SavePhotoResponseDataType = {
 	photos: PhotosType
 }
@@ -15,7 +14,7 @@ export const profileAPI = {
 		return response.data
 	},
 	async getUpdateStatus(status: string) {
-		const response = await instance.put<APIResponseType>(`profile/status`, {
+		const response = await instance.put<APIResponseType>('profile/status', {
 			status: status
 		})
 		return response.data
@@ -23,7 +22,7 @@ export const profileAPI = {
 	async savePhoto(file: File) {
 		const formData = new FormData()
 		formData.append('image', file)
-		const response = await instance.put<APIResponseType<SavePhotoResponseDataType>>(`profile/photo`, formData, {
+		const response = await instance.put<APIResponseType<SavePhotoResponseDataType>>('profile/photo', formData, {
 			headers: {
 				'Content-Type': 'multipart/form-data'
 			}
@@ -31,7 +30,7 @@ export const profileAPI = {
 		return response.data
 	},
 	async saveProfile(profile: ProfileType) {
-		const response = await instance.put<APIResponseType>(`profile`, profile)
+		const response = await instance.put<APIResponseType>('profile', profile)
 		return response.data
 	}
 }

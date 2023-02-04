@@ -1,6 +1,5 @@
 import { InferActionsTypes } from './reduxStore'
 import { getAuthUserData } from './authReducer'
-
 const initialState = {
 	initialized: false
 }

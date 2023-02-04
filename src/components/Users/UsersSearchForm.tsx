@@ -3,7 +3,6 @@ import { FC, memo } from 'react'
 import { useSelector } from 'react-redux'
 import { FilterType } from '../../redux/usersReducer'
 import { getUsersFilter } from '../../redux/usersSelectors'
-
 type PropsType = {
 	onFilterChanged: (filter: FilterType) => void
 }

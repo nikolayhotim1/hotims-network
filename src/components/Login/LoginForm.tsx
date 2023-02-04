@@ -3,7 +3,6 @@ import { InjectedFormProps, reduxForm } from 'redux-form'
 import { required } from '../../utils/validators/validators'
 import { createField, GetStringKeys, Input } from '../common/FormsControls/FormsControls'
 import style from '../common/FormsControls/FormsControls.module.css'
-
 type PropsType = {
 	captchaURL: string | null
 }

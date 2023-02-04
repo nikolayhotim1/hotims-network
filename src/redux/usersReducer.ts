@@ -4,7 +4,6 @@ import { UserType } from '../types/types'
 import { updateObjectInArray } from '../utils/helpers/objectHelper'
 import { Dispatch } from 'redux'
 import { usersAPI } from '../api/usersAPI'
-
 const initialState = {
 	users: [] as Array<UserType>,
 	pageSize: 10,
@@ -59,7 +58,7 @@ const usersReducer = (state = initialState, action: ActionsTypes): InitialStateT
 				...state,
 				followingInProgress: action.isFetching
 					? [...state.followingInProgress, action.userId]
-					: state.followingInProgress.filter((id) => id !== action.userId)
+					: state.followingInProgress.filter(id => id !== action.userId)
 			}
 		}
 		default:
@@ -81,17 +80,17 @@ const _followUnfollowFlow = async (
 }
 type ThunkType = BaseThunkType<ActionsTypes>
 export const follow = (userId: number): ThunkType => {
-	return async (dispatch) => {
+	return async dispatch => {
 		await _followUnfollowFlow(dispatch, userId, usersAPI.getNewFollowedUser.bind(userId), actions.followSuccess)
 	}
 }
 export const unfollow = (userId: number): ThunkType => {
-	return async (dispatch) => {
+	return async dispatch => {
 		await _followUnfollowFlow(dispatch, userId, usersAPI.getNewUnfollowedUser.bind(userId), actions.unfollowSuccess)
 	}
 }
 export const requestUsers = (page: number, pageSize: number, filter: FilterType): ThunkType => {
-	return async (dispatch) => {
+	return async dispatch => {
 		dispatch(actions.toggleIsFetching(true))
 		dispatch(actions.setCurrentPage(page))
 		dispatch(actions.setFilter(filter))

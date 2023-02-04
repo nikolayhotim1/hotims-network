@@ -3,10 +3,9 @@ import Preloader from '../../common/Preloader/Preloader'
 import userPhoto from '../../../assets/images/computer-user-icon.png'
 import mainImage from '../../../assets/images/the-codefather.png'
 import style from './ProfileInfo.module.css'
-import ProfileStatusWithHooks from './ProfileStatusWithHooks'
+import ProfileStatus from './ProfileStatus'
 import ProfileDataForm from './ProfileDataForm'
 import { ContactsType, ProfileType } from '../../../types/types'
-
 type ProfileInfoPropsType = {
 	isOwner: boolean
 	profile: ProfileType | null
@@ -20,13 +19,9 @@ const ProfileInfo: FC<ProfileInfoPropsType> = ({ isOwner, profile, status, getUp
 	const activateEditMode = () => {
 		setEditMode(true)
 	}
-	if (!profile) {
-		return <Preloader />
-	}
+	if (!profile) return <Preloader />
 	const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
-		if (e.target.files?.length) {
-			savePhoto(e.target.files[0])
-		}
+		if (e.target.files?.length) savePhoto(e.target.files[0])
 	}
 	const onSubmit = (formData: ProfileType) => {
 		saveProfile(formData).then(() => {
@@ -36,11 +31,11 @@ const ProfileInfo: FC<ProfileInfoPropsType> = ({ isOwner, profile, status, getUp
 	return (
 		<div>
 			<div className={style.main_image}>
-				<img src={mainImage} alt='Main Cover' />
+				<img src={mainImage} alt='Main cover' />
 			</div>
 			<div className={style.profile_wrapper}>
 				<div className={style.avatar}>
-					<img src={profile.photos.large || userPhoto} alt='profile-avatar' />
+					<img src={profile.photos.large || userPhoto} alt='Profile avatar' />
 					<div>{isOwner && <input type='file' onChange={onMainPhotoSelected} placeholder='My photo' />}</div>
 				</div>
 				{editMode ? (
@@ -70,7 +65,7 @@ const ProfileData: FC<ProfileDataPropsType> = ({ isOwner, profile, status, getUp
 		<div className={style.info}>
 			<div>
 				<h1>{profile.fullName}</h1>
-				<ProfileStatusWithHooks isOwner={isOwner} status={status} getUpdateStatus={getUpdateStatus} />
+				<ProfileStatus isOwner={isOwner} status={status} getUpdateStatus={getUpdateStatus} />
 				<div className={style.item}>
 					<b>About me:</b> {profile.aboutMe}
 				</div>
@@ -92,7 +87,7 @@ const ProfileData: FC<ProfileDataPropsType> = ({ isOwner, profile, status, getUp
 			</div>
 			<div className={style.contacts}>
 				<h2>My Contacts:</h2>
-				{Object.keys(profile.contacts).map((key) => {
+				{Object.keys(profile.contacts).map(key => {
 					return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key as keyof ContactsType]} />
 				})}
 			</div>

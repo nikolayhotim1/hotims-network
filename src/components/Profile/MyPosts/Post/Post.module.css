@@ -1,9 +1,9 @@
 .item {
     margin-top: 10px;
-    color: darkblue;
 }
 
 .item img {
     width: 300px;
     border-radius: 20px;
+    margin: 5px 5px 0 0;
 }
